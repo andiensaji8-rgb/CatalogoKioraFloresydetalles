@@ -176,6 +176,8 @@ footer .social a:hover{background:rgba(255,255,255,.12)}
 .tot{display:flex;justify-content:space-between;font:500 24px var(--serif);margin-bottom:4px}
 .note{font-size:13px;color:var(--muted)}
 .dfoot .btn{width:100%;margin-top:14px}
+.clear-btn{background:none;border:0;color:var(--muted);font-size:13px;text-decoration:underline;cursor:pointer;padding:0}
+.clear-btn:hover{color:var(--rose)}
 .lb{display:none;position:fixed;inset:0;background:rgba(30,20,23,.93);z-index:70;flex-direction:column;justify-content:center;align-items:center;padding:20px;gap:12px}
 .lb.on{display:flex}
 .lb img{max-width:92%;max-height:74vh;object-fit:contain}
@@ -192,7 +194,13 @@ header{padding:8px 4%;flex-wrap:wrap}
 nav{display:none;order:3;width:100%;flex-direction:column;gap:0;padding-bottom:8px}
 nav.on{display:flex}
 nav a{padding:12px 0;border-top:1px solid var(--line);width:100%}
-.hero{min-height:560px}.slide{padding:48px 7% 84px}.photo,.arr,.collage,.arches,.slide.light .blob{display:none}.facts{flex-wrap:wrap;gap:14px 24px}
+.hero{min-height:560px}.slide{padding:48px 7% 84px}.arr,.collage,.arches,.slide.light .blob{display:none}
+.slide{flex-direction:column;justify-content:center;align-items:flex-start;gap:22px}
+.hero h1,.hero h2{font-size:clamp(38px,10vw,54px);margin-bottom:12px}
+.hero p{font-size:16px;margin-bottom:18px}
+.hero .btns{margin-bottom:18px}
+.photo{display:block;width:150px;aspect-ratio:4/5;border-width:5px;align-self:flex-end;margin-top:-12px}
+.facts{flex-wrap:wrap;gap:14px 24px}
 .sec{padding:60px 5%}
 .form-wrap{padding:22px}
 .g2,.envios{grid-template-columns:1fr}
@@ -320,7 +328,7 @@ nav a{padding:12px 0;border-top:1px solid var(--line);width:100%}
 
 <div class="veil" id="veil"></div>
 <aside class="dr" id="drawer" aria-label="Mi pedido">
-  <header><h2>Mi pedido</h2><button class="x" id="closeCart" type="button" aria-label="Cerrar pedido">×</button></header>
+  <header><h2>Mi pedido</h2><button type="button" class="clear-btn" id="clearCart" aria-label="Vaciar pedido">Vaciar</button><button class="x" id="closeCart" type="button" aria-label="Cerrar pedido">×</button></header>
   <ul class="items" id="items"></ul>
   <div class="dfoot">
     <div class="g2"><div><label for="cNombre">Tu nombre</label><input id="cNombre" autocomplete="name"></div><div><label for="cFecha">Para el día</label><input id="cFecha" type="date"></div></div>
@@ -377,12 +385,30 @@ P("Globo Personalizable",G,"Globo personalizado con el mensaje de tu elección. 
 P("Ramo de 30 Gerberas",R,"Arreglo de 30 gerberas. Consulta colores, precio y disponibilidad.",null,"treinta-gerberas.jpg")
 ];
 
+// Tarifario de envío (MXN). Edita precios y colonias aquí. d:true muestra "desde".
+const ENVIO_BASE=50,URGENTE=20;
+const zonas=[
+{z:"Zona 1 · Local",c:50,l:["Nueva Villahermosa","Loma Linda","Linda Vista","El Águila","Florida","Jesús García","López Mateos"]},
+{z:"Zona 2 · Centro",c:50,l:["Centro Histórico","Zona Luz","Plaza de Armas","Parque Juárez","Reforma","Mayito","Guayabal","Atasta"]},
+{z:"Zona 3 · Tamulté",c:60,l:["Tamulté de las Barrancas"]},
+{z:"Zona 4 · Intermedia",c:65,l:["Primero de Mayo","FOVISSSTE","18 de Marzo","Punta Brava"]},
+{z:"Zona 5 · Comercial",c:75,l:["Tabasco 2000","Galerías","City Center","La Choca","Carrizal"]},
+{z:"Zona 6 · Oriente",c:85,l:["Gaviotas Norte","Gaviotas Sur","La Manga","Casa Blanca","Tierra Colorada"]},
+{z:"Zona 7 · Periférica",c:110,d:true,l:["Indeco","Lagunas","Ciudad Industrial","Miguel Hidalgo","Sabina"]}
+];
+const puntos=[["Plaza de Armas",50],["Parque Juárez",50],["Parque Tomás Garrido",50],["Parque La Pólvora",60],["Plaza Crystal",65],["Parque La Choca",75],["City Center",75],["Plaza Las Américas",75]];
+const D=[];
+zonas.forEach(g=>g.l.forEach(n=>D.push({n,c:g.c,g:g.z,d:g.d})));
+puntos.forEach(([n,c])=>D.push({n:"Punto: "+n,c,g:"Puntos de entrega"}));
+D.push({n:"Otra colonia de Villahermosa",c:null,g:"Otra zona"});
+
 // Si una foto no carga, prueba otras extensiones (png, jpg, jpeg, mayúsculas) antes de ocultarla.
 function fb(i){const E=["png","jpg","jpeg","PNG","JPG","JPEG","webp"],n=+(i.dataset.n||0);if(n>=E.length){i.style.visibility="hidden";return}i.dataset.n=n+1;i.src=i.src.replace(/\.[A-Za-z]+(\?.*)?$/,"."+E[n])}
 const $=s=>document.querySelector(s);
 const wa=m=>"https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(m);
 const mxn=n=>n.toLocaleString("es-MX",{style:"currency",currency:"MXN",maximumFractionDigits:0});
-const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 let cat="Todos",vista=[],li=0,cart={};
 try{cart=JSON.parse(localStorage.getItem("kiora-pedido")||"{}")}catch(e){}
 const guardar=()=>{try{localStorage.setItem("kiora-pedido",JSON.stringify(cart))}catch(e){}};
@@ -391,7 +417,7 @@ function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clea
 
 function filtros(){
   const cs=["Todos",...new Set(productos.map(p=>p.categoria))];
-  $("#filters").innerHTML=cs.map(c=>`<button type="button" class="filter${c===cat?" on":""}" data-c="${c}">${c}</button>`).join("");
+  $("#filters").innerHTML=cs.map(c=>`<button type="button" class="filter${c===cat?" on":""}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
 }
 function catalogo(){
   const q=norm($("#q").value.trim()),o=$("#sort").value;
@@ -400,17 +426,17 @@ function catalogo(){
   $("#count").textContent=vista.length+(vista.length===1?" detalle":" detalles");
   $("#products").innerHTML=vista.length?vista.map((p,i)=>`
   <article class="product">
-    <button type="button" class="pimg" data-z="${i}" aria-label="Ampliar foto de ${p.nombre}">
-      <img src="${p.imagen}" alt="${p.nombre}" loading="lazy" onerror="fb(this)">
+    <button type="button" class="pimg" data-z="${i}" aria-label="Ampliar foto de ${esc(p.nombre)}">
+      <img src="${esc(p.imagen)}" alt="${esc(p.nombre)}" loading="lazy" onerror="fb(this)">
       ${p.precio==null?"<i>A cotizar</i>":""}
     </button>
     <div class="pinfo">
-      <span class="cat">${p.categoria}</span><h3>${p.nombre}</h3>
-      <p class="pdesc">${p.descripcion}</p>
+      <span class="cat">${esc(p.categoria)}</span><h3>${esc(p.nombre)}</h3>
+      <p class="pdesc">${esc(p.descripcion)}</p>
       <span class="price">${p.precio==null?"Consultar precio":mxn(p.precio)}</span>
       <div class="row">
-        <button type="button" class="btn" data-add="${p.nombre}">Agregar al pedido</button>
-        <a class="btn line" target="_blank" rel="noopener" aria-label="Preguntar por ${p.nombre}" href="${wa("Hola, Kiora. Me interesa: "+p.nombre+". ¿Me compartes precio y disponibilidad?")}">Preguntar</a>
+        <button type="button" class="btn" data-add="${esc(p.nombre)}">Agregar al pedido</button>
+        <a class="btn line" target="_blank" rel="noopener" aria-label="Preguntar por ${esc(p.nombre)}" href="${wa("Hola, Kiora. Me interesa: "+p.nombre+". ¿Me compartes precio y disponibilidad?")}">Preguntar</a>
       </div>
     </div>
   </article>`).join(""):`<p class="empty">No encontramos ese detalle. Prueba con otra palabra o <a href="#personalizado" style="color:var(--rose);text-decoration:underline">cuéntanos tu idea</a>.</p>`;
@@ -420,17 +446,29 @@ function pedido(){
   const ks=Object.keys(cart).filter(k=>byName(k)&&cart[k]>0);
   let total=0,nq=0,n=0;
   $("#items").innerHTML=ks.length?ks.map(k=>{const p=byName(k),c=cart[k];n+=c;if(p.precio==null)nq++;else total+=p.precio*c;
-    return `<li><img src="${p.imagen}" alt="" onerror="fb(this)"><div class="n">${p.nombre}<small>${p.precio==null?"A cotizar":mxn(p.precio*c)}</small></div>
-    <div class="qty"><button type="button" data-m="${k}" aria-label="Quitar uno">−</button><span>${c}</span><button type="button" data-p="${k}" aria-label="Agregar uno">+</button></div></li>`}).join(""):`<li class="note" style="display:block;padding:30px 0;text-align:center">Aún no agregas nada. Elige algo del catálogo ♡</li>`;
+    return `<li><img src="${esc(p.imagen)}" alt="" onerror="fb(this)"><div class="n">${esc(p.nombre)}<small>${p.precio==null?"A cotizar":mxn(p.precio*c)}</small></div>
+    <div class="qty"><button type="button" data-m="${esc(k)}" aria-label="Quitar uno">−</button><span>${c}</span><button type="button" data-p="${esc(k)}" aria-label="Agregar uno">+</button></div></li>`}).join(""):`<li class="note" style="display:block;padding:30px 0;text-align:center">Aún no agregas nada. Elige algo del catálogo ♡</li>`;
   const dom=$("#cEntrega").value==="Entrega a domicilio",z=D[$("#cZona").value]||D[0];
   $("#zonaWrap").style.display=dom?"block":"none";
   const urg=$("#cUrg").checked,fee=dom&&ks.length&&z.c!=null?z.c+(urg?URGENTE:0):0;total+=fee;const ev=fee?"Incluye envío de "+mxn(fee)+". ":dom&&ks.length&&z.c==null?"Envío por confirmar (desde "+mxn(ENVIO_BASE)+"). ":"";
   $("#cnt").textContent=n;$("#total").textContent=mxn(total);
   $("#totNote").textContent=ev+(nq?nq+(nq>1?" artículos":" artículo")+" por cotizar no está incluido. El precio final se confirma por WhatsApp.":"El precio final se confirma por WhatsApp.");
   const s=$("#sendCart");s.style.opacity=ks.length?1:.5;s.style.pointerEvents=ks.length?"auto":"none";
+  const cl=$("#clearCart");if(cl)cl.style.display=ks.length?"inline-block":"none";
   const nombre=$("#cNombre").value.trim(),fecha=$("#cFecha").value;
-  const lineas=ks.map(k=>{const p=byName(k);return "• "+cart[k]+" × "+p.nombre+(p.precio==null?" (por cotizar)":" — "+mxn(p.precio*cart[k]))}).join("\n");
-  s.href=wa("¡Hola, Kiora Flores y Detalles! 🌷\n\nQuiero hacer este pedido:\n"+lineas+"\n\nTotal de referencia: "+mxn(total)+(nq?" + "+nq+" por cotizar":"")+(nombre?"\nNombre: "+nombre:"")+(fecha?"\nPara el día: "+fecha:"")+"\n"+$("#cEntrega").value+(dom?" — "+z.n+(z.c==null?" (envío por confirmar)":" (envío "+mxn(z.c+(urg?URGENTE:0))+(urg?", urgente":"")+")"):"")+"\n\n¿Me confirmas disponibilidad?");
+  const lineas=ks.map(k=>{const p=byName(k);return "• "+cart[k]+" × "+p.nombre+(p.precio==null?" (por cotizar)":" — "+mxn(p.precio*cart[k]))}).join("
+");
+  s.href=wa("¡Hola, Kiora Flores y Detalles! 🌷
+
+Quiero hacer este pedido:
+"+lineas+"
+
+Total de referencia: "+mxn(total)+(nq?" + "+nq+" por cotizar":"")+(nombre?"
+Nombre: "+nombre:"")+(fecha?"
+Para el día: "+fecha:"")+"
+"+$("#cEntrega").value+(dom?" — "+z.n+(z.c==null?" (envío por confirmar)":" (envío "+mxn(z.c+(urg?URGENTE:0))+(urg?", urgente":"")+")"):"")+"
+
+¿Me confirmas disponibilidad?");
   guardar();
 }
 const cambiar=(k,d)=>{cart[k]=Math.max(0,(cart[k]||0)+d);if(!cart[k])delete cart[k];pedido()};
@@ -451,6 +489,7 @@ $("#products").addEventListener("click",e=>{
   if(z)lb(+z.dataset.z);
 });
 $("#items").addEventListener("click",e=>{const m=e.target.closest("[data-m]"),p=e.target.closest("[data-p]");if(m)cambiar(m.dataset.m,-1);if(p)cambiar(p.dataset.p,1)});
+$("#clearCart").addEventListener("click",()=>{cart={};pedido();toast("Pedido vaciado")});
 ["#cNombre","#cFecha","#cEntrega","#cZona","#cUrg"].forEach(s=>$(s).addEventListener("input",pedido));
 $("#openCart").addEventListener("click",()=>drawer(true));
 $("#closeCart").addEventListener("click",()=>drawer(false));
@@ -467,7 +506,14 @@ $("#nav").addEventListener("click",()=>$("#nav").classList.remove("on"));
 
 $("#orderForm").addEventListener("submit",e=>{
   e.preventDefault();
-  window.open(wa("¡Hola, Kiora Flores y Detalles! 🌷\n\nQuiero un pedido personalizado.\nNombre: "+$("#nombre").value.trim()+"\nOcasión: "+$("#ocasion").value+"\nFecha: "+$("#fecha").value+"\nPresupuesto: $"+$("#presupuesto").value+" MXN\nMi idea: "+$("#idea").value.trim()),"_blank");
+  window.open(wa("¡Hola, Kiora Flores y Detalles! 🌷
+
+Quiero un pedido personalizado.
+Nombre: "+$("#nombre").value.trim()+"
+Ocasión: "+$("#ocasion").value+"
+Fecha: "+$("#fecha").value+"
+Presupuesto: $"+$("#presupuesto").value+" MXN
+Mi idea: "+$("#idea").value.trim()),"_blank");
 });
 const manana=new Date(Date.now()+864e5).toISOString().slice(0,10);
 ["#fecha","#cFecha"].forEach(s=>$(s).min=manana);
@@ -483,9 +529,9 @@ const portada=[
 {n:"Ramo Dulce Amanecer",t:"Suave como<br>un amanecer.",p:"6 rosas rosadas con crisantemos y follaje verde."}
 ].filter(x=>!x.n||byName(x.n));
 let hi=0,ht;
-const col=`<div class="collage" aria-hidden="true">${["Ramo Coqueta","Ramo Te Quiero Soleado","Ramo Princesa"].filter(byName).map(n=>`<img src="${byName(n).imagen}" alt="" onerror="fb(this)">`).join("")}</div>`;
-const arco=(n,c)=>byName(n)?`<img class="${c}" src="${byName(n).imagen}" alt="${byName(n).nombre}" onerror="fb(this)">`:"";
-const chip=(n,c)=>byName(n)?`<span class="chip ${c}"><b>${n}</b>${mxn(byName(n).precio)}</span>`:"";
+const col=`<div class="collage" aria-hidden="true">${["Ramo Coqueta","Ramo Te Quiero Soleado","Ramo Princesa"].filter(byName).map(n=>`<img src="${esc(byName(n).imagen)}" alt="" onerror="fb(this)">`).join("")}</div>`;
+const arco=(n,c)=>byName(n)?`<img class="${c}" src="${esc(byName(n).imagen)}" alt="${esc(byName(n).nombre)}" onerror="fb(this)">`:"";
+const chip=(n,c)=>byName(n)?`<span class="chip ${c}"><b>${esc(n)}</b>${mxn(byName(n).precio)}</span>`:"";
 $("#slides").innerHTML=portada.map((x,i)=>{
   if(x.light)return `<div class="slide light on" aria-hidden="false"><span class="blob"></span><div class="hero-in"><h1>${x.t}</h1><p>${x.p}</p>
   <div class="btns"><a href="#catalogo" class="btn">Ver el catálogo</a><a href="#personalizado" class="btn line">Crear uno a mi gusto</a></div>
@@ -493,11 +539,11 @@ $("#slides").innerHTML=portada.map((x,i)=>{
   <div class="arches" aria-hidden="true">${arco("Ramo Coqueta","a1")}${arco("Ramo Princesa","a2")}${chip("Ramo Coqueta","c1")}${chip("Ramo Princesa","c2")}</div></div>`;
   const pr=x.n?byName(x.n):null,img=pr?pr.imagen:x.img;
   const tit=i?`<h2>${x.t}</h2>`:`<h1>${x.t}</h1>`;
-  return `<div class="slide${i?"":" on"}${pr?" blur":""}" aria-hidden="${i?"true":"false"}">${pr?`<div class="bg" style="--img:url('${img}')"></div>`:`<img class="bgi" src="${img}" alt="" onerror="fb(this)">`}
-  <div class="hero-in">${pr?`<span class="tag">${pr.nombre} · ${pr.precio==null?"Consultar precio":mxn(pr.precio)}</span>`:""}${tit}<p>${x.p}</p>
-  <div class="btns">${pr?`<button type="button" class="btn" data-ver="${pr.nombre}">Ver este detalle</button><button type="button" class="btn ghost" data-hadd="${pr.nombre}">Agregar al pedido</button>`:`<a href="#catalogo" class="btn">Ver el catálogo</a><a href="#personalizado" class="btn ghost">Crear uno a mi gusto</a>`}</div>
+  return `<div class="slide${i?"":" on"}${pr?" blur":""}" aria-hidden="${i?"true":"false"}">${pr?`<div class="bg" style="--img:url('${esc(img)}')"></div>`:`<img class="bgi" src="${esc(img)}" alt="" onerror="fb(this)">`}
+  <div class="hero-in">${pr?`<span class="tag">${esc(pr.nombre)} · ${pr.precio==null?"Consultar precio":mxn(pr.precio)}</span>`:""}${tit}<p>${x.p}</p>
+  <div class="btns">${pr?`<button type="button" class="btn" data-ver="${esc(pr.nombre)}">Ver este detalle</button><button type="button" class="btn ghost" data-hadd="${esc(pr.nombre)}">Agregar al pedido</button>`:`<a href="#catalogo" class="btn">Ver el catálogo</a><a href="#personalizado" class="btn ghost">Crear uno a mi gusto</a>`}</div>
   ${pr?"":`<ul class="chips"><li>Flores frescas</li><li>Pedidos con agenda</li><li>Regalos personalizados</li></ul>`}</div>
-  ${pr?`<img class="photo" src="${img}" alt="${pr.nombre}" onerror="fb(this)">`:col}</div>`}).join("");
+  ${pr?`<img class="photo" src="${esc(img)}" alt="${esc(pr.nombre)}" onerror="fb(this)">`:col}</div>`}).join("");
 $("#dots").innerHTML=portada.map((x,i)=>`<button type="button" class="${i?"":"on"}" data-h="${i}" aria-label="Ir a la imagen ${i+1}"></button>`).join("");
 function ir(i){
   hi=(i+portada.length)%portada.length;
@@ -518,28 +564,13 @@ $("#hPrev").addEventListener("click",()=>ir(hi-1));$("#hNext").addEventListener(
 let tx=0;hero.addEventListener("touchstart",e=>{tx=e.touches[0].clientX},{passive:true});
 hero.addEventListener("touchend",e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)ir(hi+(d<0?1:-1))});
 $("#inicio").classList.toggle("lt",!!portada[0].light);auto(true);
-// Tarifario de envío (MXN). Edita precios y colonias aquí. d:true muestra "desde".
-const ENVIO_BASE=50,URGENTE=20;
-const zonas=[
-{z:"Zona 1 · Local",c:50,l:["Nueva Villahermosa","Loma Linda","Linda Vista","El Águila","Florida","Jesús García","López Mateos"]},
-{z:"Zona 2 · Centro",c:50,l:["Centro Histórico","Zona Luz","Plaza de Armas","Parque Juárez","Reforma","Mayito","Guayabal","Atasta"]},
-{z:"Zona 3 · Tamulté",c:60,l:["Tamulté de las Barrancas"]},
-{z:"Zona 4 · Intermedia",c:65,l:["Primero de Mayo","FOVISSSTE","18 de Marzo","Punta Brava"]},
-{z:"Zona 5 · Comercial",c:75,l:["Tabasco 2000","Galerías","City Center","La Choca","Carrizal"]},
-{z:"Zona 6 · Oriente",c:85,l:["Gaviotas Norte","Gaviotas Sur","La Manga","Casa Blanca","Tierra Colorada"]},
-{z:"Zona 7 · Periférica",c:110,d:true,l:["Indeco","Lagunas","Ciudad Industrial","Miguel Hidalgo","Sabina"]}
-];
-const puntos=[["Plaza de Armas",50],["Parque Juárez",50],["Parque Tomás Garrido",50],["Parque La Pólvora",60],["Plaza Crystal",65],["Parque La Choca",75],["City Center",75],["Plaza Las Américas",75]];
-const D=[];
-zonas.forEach(g=>g.l.forEach(n=>D.push({n,c:g.c,g:g.z,d:g.d})));
-puntos.forEach(([n,c])=>D.push({n:"Punto: "+n,c,g:"Puntos de entrega"}));
-D.push({n:"Otra colonia de Villahermosa",c:null,g:"Otra zona"});
+
 const pz=x=>x.c==null?"te confirmamos":(x.d?"desde ":"")+mxn(x.c);
-const opZ=[...new Set(D.map(x=>x.g))].map(g=>`<optgroup label="${g}">`+D.map((x,i)=>x.g===g?`<option value="${i}">${x.n} — ${pz(x)}</option>`:"").join("")+"</optgroup>").join("");
+const opZ=[...new Set(D.map(x=>x.g))].map(g=>`<optgroup label="${esc(g)}">`+D.map((x,i)=>x.g===g?`<option value="${i}">${esc(x.n)} — ${pz(x)}</option>`:"").join("")+"</optgroup>").join("");
 $("#cZona").innerHTML=opZ;$("#zSel").innerHTML=opZ;
-$("#zList").innerHTML=zonas.map(g=>`<li><span><b>${g.z}</b><br><small>${g.l.join(", ")}</small></span><b>${g.d?"desde ":""}${mxn(g.c)}</b></li>`).join("")+`<li><span><b>Puntos de entrega</b><br><small>${puntos.map(p=>p[0]+" "+mxn(p[1])).join(" · ")}</small></span></li>`;
+$("#zList").innerHTML=zonas.map(g=>`<li><span><b>${esc(g.z)}</b><br><small>${esc(g.l.join(", "))}</small></span><b>${g.d?"desde ":""}${mxn(g.c)}</b></li>`).join("")+`<li><span><b>Puntos de entrega</b><br><small>${puntos.map(p=>esc(p[0])+" "+mxn(p[1])).join(" · ")}</small></span></li>`;
 function zona(){const z=D[$("#zSel").value];
-  $("#zRes").innerHTML=z.c==null?"Te confirmamos el costo por WhatsApp (desde "+mxn(ENVIO_BASE)+").":"Envío a <b>"+z.n+"</b>: <b>"+pz(z)+"</b>";
+  $("#zRes").innerHTML=z.c==null?"Te confirmamos el costo por WhatsApp (desde "+mxn(ENVIO_BASE)+").":"Envío a <b>"+esc(z.n)+"</b>: <b>"+pz(z)+"</b>";
   $("#zWa").href=wa("Hola, Kiora. Quiero una entrega en: "+z.n+". ¿Me confirmas el costo de envío?")}
 $("#zSel").addEventListener("change",zona);zona();
 filtros();catalogo();pedido();
