@@ -39,7 +39,13 @@ nav a:hover{color:var(--rose)}
 .btn.ghost:hover{background:rgba(255,255,255,.18)}
 .btn.line{background:transparent;color:var(--rose)}
 .btn.line:hover{background:var(--blush)}
-.hero{position:relative;isolation:isolate;min-height:620px;color:#fff;overflow:hidden;background:#30191f}
+.hero{position:relative;isolation:isolate;min-height:620px;color:#fff;overflow:hidden;background:linear-gradient(135deg,#5e3040,#a85e70 62%,#d99da9)}
+.bgi{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+.collage{position:relative;width:min(440px,38vw);height:470px;flex-shrink:0}
+.collage img{position:absolute;width:62%;aspect-ratio:4/5;object-fit:cover;border:7px solid #fff;box-shadow:0 18px 44px #0006;background:var(--blush)}
+.collage img:nth-child(1){left:0;top:34px;transform:rotate(-5deg)}
+.collage img:nth-child(2){right:0;top:0;transform:rotate(4deg);z-index:1}
+.collage img:nth-child(3){left:20%;bottom:0;transform:rotate(-1deg);z-index:2}
 .slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;gap:40px;padding:70px 8% 90px;opacity:0;visibility:hidden;transition:opacity .9s,visibility .9s}
 .slide.on{opacity:1;visibility:visible}
 .slide .bg{position:absolute;inset:0;background:var(--img) center/cover;z-index:-1}
@@ -55,6 +61,27 @@ nav a:hover{color:var(--rose)}
 .dots button.on{background:#fff;width:30px}
 .arr{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.18);color:#fff;font-size:26px;cursor:pointer}
 .arr:hover{background:rgba(255,255,255,.32)}
+.slide.light{background:var(--cream);color:var(--ink)}
+.slide.light::after{display:none}
+.slide.light .blob{position:absolute;right:6%;top:50%;width:min(520px,36vw);aspect-ratio:1;transform:translateY(-52%);border-radius:50%;background:var(--blush)}
+.slide.light .hero-in{position:relative}
+.slide.light h1{color:#5e3040}
+.slide.light p{color:var(--muted)}
+.slide.light .btn.line{border-color:var(--rose-d);color:var(--rose-d)}
+.slide.light .btn.line:hover{background:var(--blush)}
+.facts{display:flex;gap:30px;list-style:none;margin-top:30px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.facts b{display:block;font-weight:500;font-size:16px;color:var(--ink)}
+.arches{position:relative;width:min(520px,38vw);height:500px;flex-shrink:0}
+.arches img{position:absolute;object-fit:cover;background:var(--blush)}
+.arches .a1{left:0;top:0;width:60%;height:92%;border-radius:999px 999px 0 0}
+.arches .a2{right:0;top:18%;width:48%;height:72%;border-radius:999px 999px 0 0;border:8px solid var(--cream);box-sizing:border-box}
+.chip{position:absolute;background:#fff;border:1px solid var(--line);padding:10px 16px;box-shadow:0 10px 28px rgba(168,94,112,.18);font-size:14px;color:var(--rose)}
+.chip b{display:block;font:500 22px/1.1 var(--serif);color:var(--ink)}
+.chip.c1{left:-24px;bottom:16%}.chip.c2{right:-8px;bottom:-4px}
+.hero.lt .arr{background:rgba(135,72,88,.14);color:var(--rose-d)}
+.hero.lt .arr:hover{background:rgba(135,72,88,.26)}
+.hero.lt .dots button{border-color:var(--rose-d)}
+.hero.lt .dots button.on{background:var(--rose-d)}
 .arr.l{left:14px}.arr.r{right:14px}
 .hero-in{max-width:620px;animation:rise .9s ease both}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}}
@@ -165,7 +192,7 @@ header{padding:8px 4%;flex-wrap:wrap}
 nav{display:none;order:3;width:100%;flex-direction:column;gap:0;padding-bottom:8px}
 nav.on{display:flex}
 nav a{padding:12px 0;border-top:1px solid var(--line);width:100%}
-.hero{min-height:560px}.slide{padding:48px 7% 84px}.photo,.arr{display:none}
+.hero{min-height:560px}.slide{padding:48px 7% 84px}.photo,.arr,.collage,.arches,.slide.light .blob{display:none}.facts{flex-wrap:wrap;gap:14px 24px}
 .sec{padding:60px 5%}
 .form-wrap{padding:22px}
 .g2,.envios{grid-template-columns:1fr}
@@ -448,7 +475,7 @@ $("#contactBtn").href=wa("Hola, Kiora. Me gustaría conocer su catálogo.");
 $("#waFloat").href=wa("Hola, Kiora. Quiero información sobre sus flores.");
 // Portada: cada slide muestra un producto del catálogo (por nombre). Edita textos aquí.
 const portada=[
-{t:"Regala flores,<br>regala emociones.",p:"Elige tu regalo especial para esa persona especial. Cada detalle cuenta una historia.",img:"imagenes/portada.jpg"},
+{light:true,t:"Regala flores,<br>regala emociones.",p:"Ramos, bouquets y regalos personalizados para esa persona especial. Cada detalle cuenta una historia."},
 {n:"Ramo Te Quiero Soleado",t:"Para quien<br>es tu sol.",p:"Seis girasoles y seis rosas con solidago, para alegrar su día."},
 {n:"Bouquet Pasión Eterna",t:"Veinte rosas para<br>decirlo todo.",p:"Rosas rojas naturales premium con tarjeta personalizada."},
 {n:"Bouquet Dulce Encanto",t:"Flores y chocolates,<br>en un solo regalo.",p:"Rosas naturales, eucalipto y chocolates Kinder en un mismo bouquet."},
@@ -456,21 +483,30 @@ const portada=[
 {n:"Ramo Dulce Amanecer",t:"Suave como<br>un amanecer.",p:"6 rosas rosadas con crisantemos y follaje verde."}
 ].filter(x=>!x.n||byName(x.n));
 let hi=0,ht;
+const col=`<div class="collage" aria-hidden="true">${["Ramo Coqueta","Ramo Te Quiero Soleado","Ramo Princesa"].filter(byName).map(n=>`<img src="${byName(n).imagen}" alt="" onerror="fb(this)">`).join("")}</div>`;
+const arco=(n,c)=>byName(n)?`<img class="${c}" src="${byName(n).imagen}" alt="${byName(n).nombre}" onerror="fb(this)">`:"";
+const chip=(n,c)=>byName(n)?`<span class="chip ${c}"><b>${n}</b>${mxn(byName(n).precio)}</span>`:"";
 $("#slides").innerHTML=portada.map((x,i)=>{
+  if(x.light)return `<div class="slide light on" aria-hidden="false"><span class="blob"></span><div class="hero-in"><h1>${x.t}</h1><p>${x.p}</p>
+  <div class="btns"><a href="#catalogo" class="btn">Ver el catálogo</a><a href="#personalizado" class="btn line">Crear uno a mi gusto</a></div>
+  <ul class="facts"><li><b>Entrega en Villahermosa</b>desde $50</li><li><b>Aparta con 50%</b>el resto al entregar</li><li><b>Diseños a tu gusto</b>según tu presupuesto</li></ul></div>
+  <div class="arches" aria-hidden="true">${arco("Ramo Coqueta","a1")}${arco("Ramo Princesa","a2")}${chip("Ramo Coqueta","c1")}${chip("Ramo Princesa","c2")}</div></div>`;
   const pr=x.n?byName(x.n):null,img=pr?pr.imagen:x.img;
   const tit=i?`<h2>${x.t}</h2>`:`<h1>${x.t}</h1>`;
-  return `<div class="slide${i?"":" on"}${pr?" blur":""}" aria-hidden="${i?"true":"false"}"><div class="bg" style="--img:url('${img}')"></div>
+  return `<div class="slide${i?"":" on"}${pr?" blur":""}" aria-hidden="${i?"true":"false"}">${pr?`<div class="bg" style="--img:url('${img}')"></div>`:`<img class="bgi" src="${img}" alt="" onerror="fb(this)">`}
   <div class="hero-in">${pr?`<span class="tag">${pr.nombre} · ${pr.precio==null?"Consultar precio":mxn(pr.precio)}</span>`:""}${tit}<p>${x.p}</p>
   <div class="btns">${pr?`<button type="button" class="btn" data-ver="${pr.nombre}">Ver este detalle</button><button type="button" class="btn ghost" data-hadd="${pr.nombre}">Agregar al pedido</button>`:`<a href="#catalogo" class="btn">Ver el catálogo</a><a href="#personalizado" class="btn ghost">Crear uno a mi gusto</a>`}</div>
   ${pr?"":`<ul class="chips"><li>Flores frescas</li><li>Pedidos con agenda</li><li>Regalos personalizados</li></ul>`}</div>
-  ${pr?`<img class="photo" src="${img}" alt="${pr.nombre}" onerror="fb(this)">`:""}</div>`}).join("");
+  ${pr?`<img class="photo" src="${img}" alt="${pr.nombre}" onerror="fb(this)">`:col}</div>`}).join("");
 $("#dots").innerHTML=portada.map((x,i)=>`<button type="button" class="${i?"":"on"}" data-h="${i}" aria-label="Ir a la imagen ${i+1}"></button>`).join("");
 function ir(i){
   hi=(i+portada.length)%portada.length;
+  $("#inicio").classList.toggle("lt",!!portada[hi].light);
   document.querySelectorAll(".slide").forEach((e,k)=>{e.classList.toggle("on",k===hi);e.setAttribute("aria-hidden",k!==hi)});
   document.querySelectorAll("#dots button").forEach((e,k)=>e.classList.toggle("on",k===hi));
+  auto(true);
 }
-function auto(on){clearInterval(ht);if(on&&!matchMedia("(prefers-reduced-motion:reduce)").matches)ht=setInterval(()=>ir(hi+1),6000)}
+function auto(on){clearInterval(ht);if(on)ht=setInterval(()=>ir(hi+1),5500)}
 const hero=$("#inicio");
 hero.addEventListener("click",e=>{
   const d=e.target.closest("[data-h]"),v=e.target.closest("[data-ver]"),a=e.target.closest("[data-hadd]");
@@ -479,11 +515,9 @@ hero.addEventListener("click",e=>{
   if(v){cat="Todos";$("#q").value=v.dataset.ver;filtros();catalogo();$("#catalogo").scrollIntoView({behavior:"smooth"})}
 });
 $("#hPrev").addEventListener("click",()=>ir(hi-1));$("#hNext").addEventListener("click",()=>ir(hi+1));
-hero.addEventListener("mouseenter",()=>auto(false));hero.addEventListener("mouseleave",()=>auto(true));
-hero.addEventListener("focusin",()=>auto(false));hero.addEventListener("focusout",()=>auto(true));
 let tx=0;hero.addEventListener("touchstart",e=>{tx=e.touches[0].clientX},{passive:true});
 hero.addEventListener("touchend",e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)ir(hi+(d<0?1:-1))});
-auto(true);
+$("#inicio").classList.toggle("lt",!!portada[0].light);auto(true);
 // Tarifario de envío (MXN). Edita precios y colonias aquí. d:true muestra "desde".
 const ENVIO_BASE=50,URGENTE=20;
 const zonas=[
