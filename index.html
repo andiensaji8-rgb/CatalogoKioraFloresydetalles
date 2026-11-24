@@ -18,8 +18,8 @@
     a{text-decoration:none;color:inherit}
     .topbar{background:var(--rose);color:white;text-align:center;padding:9px 12px;font:11px Arial,sans-serif;letter-spacing:1.5px}
     header{background:rgba(255,250,247,.97);padding:17px 7%;display:flex;align-items:center;justify-content:space-between;gap:20px;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border)}
-    .logo{color:var(--rose);font-size:30px;letter-spacing:4px;font-weight:bold;line-height:1}
-    .logo small{display:block;text-align:center;font:9px Arial,sans-serif;letter-spacing:3px;margin-top:7px}
+    .logo{display:flex;align-items:center;line-height:1}
+    .logo img{display:block;width:150px;max-height:68px;object-fit:contain}
     nav{display:flex;align-items:center;gap:25px;font:13px Arial,sans-serif}
     nav a:hover{color:var(--rose)}
     .hero{min-height:570px;background:linear-gradient(90deg,rgba(48,25,31,.53),rgba(48,25,31,.05)),url("imagenes/portada.jpg") center/cover no-repeat;display:flex;align-items:center;padding:70px 10%;color:white}
@@ -88,7 +88,7 @@
 <body>
   <div class="topbar">FLORES Y DETALLES PARA CADA MOMENTO ESPECIAL ♡</div>
   <header>
-    <a href="#inicio" class="logo">KIORA<small>FLORES Y DETALLES</small></a>
+    <a href="#inicio" class="logo" aria-label="Kiora Flores y Detalles"><img src="imagenes/kiora.png" alt="Logo de Kiora Flores y Detalles"></a>
     <nav>
       <a href="#inicio">Inicio</a><a href="#catalogo">Catálogo</a>
       <a href="#pedidos">Pedidos</a><a href="#personalizado">Personalizados</a>
@@ -178,38 +178,39 @@
   <script>
     // WhatsApp de contacto tomado del catálogo anterior de Kiora.
     // Si este número ya no es el de atención, reemplázalo aquí.
-    const WHATSAPP = "529931070945";
+    const WHATSAPP = "529601011637";
 
     // Cada producto utiliza una sola fotografía dentro de la carpeta imagenes/.
     // Los precios corresponden al catálogo PDF anterior y pueden actualizarse aquí.
     const productos = [
       { nombre:"Atardecer Rosado", categoria:"Ramos florales", descripcion:"6 rosas rosadas + 3 gerberas naranjas con centro amarillo, abundante statice morado y nube.", precio:500, imagen:"imagenes/atardecer-rosado.jpg" },
-      { nombre:"Ramo Sutileza y Pureza", categoria:"Ramos florales", descripcion:"5 rosas en tonos blanco y rosa suave, acompañadas de abundante follaje sólido de tono verde fresco.", precio:350, imagen:"imagenes/sutileza-y-pureza.jpg" },
-      { nombre:"Ramo Luz de Noche", categoria:"Ramos florales", descripcion:"2 girasoles + gypsophila + solidago.", precio:410, imagen:"imagenes/luz-de-noche.jpg" },
-      { nombre:"Ramo Amor en Lila", categoria:"Ramos florales", descripcion:"12 crisantemos pompom + gypsophila.", precio:500, imagen:"imagenes/amor-en-lila.jpg" },
-      { nombre:"Ramo Un Sol Para Ti", categoria:"Ramos florales", descripcion:"1 girasol + nubes + envoltura del color de tu preferencia.", precio:380, imagen:"imagenes/un-sol-para-ti.jpg" },
+      { nombre:"Ramo Sutileza y Pureza", categoria:"Ramos florales", descripcion:"5 rosas en tonos blanco y rosa suave, acompañadas de abundante follaje sólido de tono verde fresco.", precio:350, imagen:"imagenes/sutileza-y-pureza.png" },
+      { nombre:"Ramo Luz de Noche", categoria:"Ramos florales", descripcion:"2 girasoles + gypsophila + solidago.", precio:410, imagen:"imagenes/ramo-luz-de-noche.png" },
+      { nombre:"Ramo Amor en Lila", categoria:"Ramos florales", descripcion:"12 crisantemos pompom + gypsophila.", precio:500, imagen:"imagenes/amor-en-lila.png" },
+      { nombre:"Ramo Un Sol Para Ti", categoria:"Ramos florales", descripcion:"1 girasol + nubes + envoltura del color de tu preferencia.", precio:380, imagen:"imagenes/un-sol-para-ti.png" },
       { nombre:"Ramo Eres Mi Sol", categoria:"Ramos florales", descripcion:"2 girasoles + claveles rosados + nubes + follaje verde.", precio:450, imagen:"imagenes/eres-mi-sol.jpg" },
-      { nombre:"Ramo Amor Dulce", categoria:"Ramos florales", descripcion:"Una rosa roja + 6 Ferrero + nubes.", precio:400, imagen:"imagenes/amor-dulce.jpg" },
-      { nombre:"Ramo Cinco Razones Para Amarte", categoria:"Ramos florales", descripcion:"5 rosas rojas + nubes.", precio:360, imagen:"imagenes/cinco-razones-para-amarte.jpg" },
+      { nombre:"Ramo Amor Dulce", categoria:"Ramos florales", descripcion:"Una rosa roja + 6 Ferrero + nubes.", precio:400, imagen:"imagenes/amor-dulce.png" },
+      { nombre:"Ramo Cinco Razones Para Amarte", categoria:"Ramos florales", descripcion:"5 rosas rojas + nubes.", precio:360, imagen:"imagenes/cinco-razones-para-amarte.png" },
       { nombre:"Ramo Atardecer de Amor", categoria:"Ramos florales", descripcion:"1 girasol + 2 rosas rojas + nubes + chocolates Ferrero Rocher.", precio:500, imagen:"imagenes/atardecer-de-amor.jpg" },
       { nombre:"Ramo Te Quiero Soleado", categoria:"Ramos florales", descripcion:"6 girasoles + 6 rosas + solidago.", precio:900, imagen:"imagenes/te-quiero-soleado.jpg" },
       { nombre:"Ramo Dulce Amanecer", categoria:"Ramos florales", descripcion:"6 rosas rosadas + crisantemos + follaje verde (solidago).", precio:480, imagen:"imagenes/dulce-amanecer.jpg" },
       { nombre:"Ramo Dulce Ternura", categoria:"Ramos florales", descripcion:"1 girasol grande + 4 rosas fucsias + astromelias + follaje verde (solidago).", precio:500, imagen:"imagenes/dulce-ternura.jpg" },
       { nombre:"Ramo Amanecer Naranja", categoria:"Ramos florales", descripcion:"1 gerbera naranja + 3 rosas blancas + gypsophila + solidago + statice morado.", precio:410, imagen:"imagenes/amanecer-naranja.jpg" },
       { nombre:"Ramo Tres Suspiros", categoria:"Ramos florales", descripcion:"3 rosas blancas + nubes.", precio:360, imagen:"imagenes/tres-suspiros.jpg" },
-      { nombre:"Ramo Coqueta", categoria:"Ramos florales", descripcion:"1 gerbera + gypsophila + solidago.", precio:350, imagen:"imagenes/coqueta.jpg" },
-      { nombre:"Ramo Princesa", categoria:"Ramos florales", descripcion:"5 rosas rosadas + gypsophila.", precio:440, imagen:"imagenes/princesa.jpg" },
+      { nombre:"Ramo Coqueta", categoria:"Ramos florales", descripcion:"1 gerbera + gypsophila + solidago.", precio:350, imagen:"imagenes/coqueta.png" },
+      { nombre:"Ramo Princesa", categoria:"Ramos florales", descripcion:"5 rosas rosadas + gypsophila.", precio:440, imagen:"imagenes/princesa.JPG" },
 
-      { nombre:"Bouquet Pasión Eterna", categoria:"Bouquets", descripcion:"20 rosas rojas naturales premium + nube natural (gypsophila) + envoltura con bordes blancos + moño de listón + tarjeta personalizada.", precio:800, imagen:"imagenes/bouquet-pasion-eterna.jpg" },
-      { nombre:"Bouquet Pureza", categoria:"Bouquets", descripcion:"7 rosas blancas naturales + nube natural (gypsophila) + follaje verde + envoltura color crema + listón de satén + tarjeta personalizada.", precio:500, imagen:"imagenes/bouquet-pureza.jpg" },
-      { nombre:"Mini Bouquet Ferrero", categoria:"Bouquets", descripcion:"3 Ferrero Rocher + nubes + envoltura premium + tarjeta personalizada.", precio:299, imagen:"imagenes/mini-bouquet-ferrero.jpg" },
-      { nombre:"Bouquet Dulce Mix", categoria:"Bouquets", descripcion:"Mix de chocolates (Kinder Bueno, Twix, Kit Kat, Snickers, etc.) + envoltura premium + listón decorativo + tarjeta personalizada con texto a tu elección.", precio:800, imagen:"imagenes/bouquet-dulce-mix.jpg" },
-      { nombre:"Bouquet Dulce Encanto", categoria:"Bouquets", descripcion:"Rosas naturales + nubes + eucalipto + mix de chocolates Kinder + envoltura premium + listón de satén + tarjeta personalizada.", precio:1200, imagen:"imagenes/bouquet-dulce-encanto.jpg" },
+      { nombre:"Bouquet Pasión Eterna", categoria:"Bouquets", descripcion:"20 rosas rojas naturales premium + nube natural (gypsophila) + envoltura con bordes blancos + moño de listón + tarjeta personalizada.", precio:800, imagen:"imagenes/bouquet-pasion-eterna.PNG" },
+      { nombre:"Bouquet Pureza", categoria:"Bouquets", descripcion:"7 rosas blancas naturales + nube natural (gypsophila) + follaje verde + envoltura color crema + listón de satén + tarjeta personalizada.", precio:500, imagen:"imagenes/bouquet-pureza.png" },
+      { nombre:"Bouquet Dulce Mix", categoria:"Bouquets", descripcion:"Mix de chocolates (Kinder Bueno, Twix, Kit Kat, Snickers, etc.) + envoltura premium + listón decorativo + tarjeta personalizada con texto a tu elección.", precio:800, imagen:"imagenes/bouquet-dulce-mix.png" },
+      { nombre:"Bouquet Dulce Encanto", categoria:"Bouquets", descripcion:"Rosas naturales + nubes + eucalipto + mix de chocolates Kinder + envoltura premium + listón de satén + tarjeta personalizada.", precio:1200, imagen:"imagenes/bouquet-dulce-encanto.png" },
 
-      { nombre:"Huacal de Amor", categoria:"Regalos y detalles", descripcion:"Cajita de madera + 8 rosas rojas naturales + nubes + letrero personalizado a tu elección + globo de corazón.", precio:650, imagen:"imagenes/huacal-de-amor.jpg" },
-      { nombre:"Vaso Corazón", categoria:"Regalos y detalles", descripcion:"Vaso de plástico con tapa y popote + flores artificiales + globo corazón metálico con mensaje.", precio:480, imagen:"imagenes/vaso-corazon.jpg" },
-      { nombre:"Cajita Beauty", categoria:"Regalos y detalles", descripcion:"Cajita kraft decorada con papel china y contenido 100% personalizable: accesorios girly y tarjeta con mensaje personalizado.", precio:500, imagen:"imagenes/cajita-beauty.jpg" },
-      { nombre:"Bouquet de Globos Personalizado con Helio", categoria:"Regalos y detalles", descripcion:"2 globos estrella + globo burbuja con globo dorado por dentro y letras personalizadas + globo plateado + globo dorado + 8 globos rojos.", precio:1600, imagen:"imagenes/bouquet-globos-helio.jpg" }
+      { nombre:"Huacal de Amor", categoria:"Regalos y detalles", descripcion:"Cajita de madera + 8 rosas rojas naturales + nubes + letrero personalizado a tu elección + globo de corazón.", precio:650, imagen:"imagenes/huacal-de-amor.png" },
+      { nombre:"Bouquet de Globos Personalizado con Helio", categoria:"Regalos y detalles", descripcion:"2 globos estrella + globo burbuja con globo dorado por dentro y letras personalizadas + globo plateado + globo dorado + 8 globos rojos.", precio:1600, imagen:"imagenes/bouquet-globos-helio.png" },
+      { nombre:"Bouquet Dulce Sorpresa", categoria:"Bouquets", descripcion:"Bouquet de dulces. Personaliza tu detalle y consulta disponibilidad.", precio:null, imagen:"imagenes/bouquet-dulce-sorpresa.PNG" },
+      { nombre:"Bouquet Esencia", categoria:"Bouquets", descripcion:"Un detalle floral especial. Consulta opciones y disponibilidad.", precio:null, imagen:"imagenes/bouquet-esencia.PNG" },
+      { nombre:"Globo Personalizable", categoria:"Regalos y detalles", descripcion:"Globo personalizado con el mensaje de tu elección. Consulta medidas y disponibilidad.", precio:null, imagen:"imagenes/Globo-personalizable.PNG" },
+      { nombre:"Ramo de 30 Gerberas", categoria:"Ramos florales", descripcion:"Arreglo de 30 gerberas. Consulta colores, precio y disponibilidad.", precio:null, imagen:"imagenes/treinta-gerberas.jpg" }
     ];
 
     function whatsappLink(mensaje) {
@@ -232,9 +233,9 @@
             <span class="product-category">${p.categoria}</span>
             <h3>${p.nombre}</h3>
             <p class="product-description">${p.descripcion}</p>
-            <span class="price">${dinero(p.precio)} MXN</span>
+            <span class="price">${p.precio == null ? "Consultar precio" : dinero(p.precio) + " MXN"}</span>
             <a class="btn" target="_blank" rel="noopener"
-              href="${whatsappLink("Hola, Kiora. Me interesa: " + p.nombre + " (precio de catálogo: " + dinero(p.precio) + "). ¿Está disponible?")}">
+              href="${whatsappLink("Hola, Kiora. Me interesa: " + p.nombre + (p.precio == null ? ". ¿Me compartes el precio y disponibilidad?" : " (precio de catálogo: " + dinero(p.precio) + "). ¿Está disponible?"))}">
               PEDIR POR WHATSAPP
             </a>
           </div>
