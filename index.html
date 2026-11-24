@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kiora | Flores y Detalles</title>
-  <meta name="description" content="Kiora Flores y Detalles. Bouquets, rosas, arreglos florales y regalos personalizados en Villahermosa, Tabasco.">
+  <meta name="description" content="Kiora Flores y Detalles. Ramos florales, bouquets y regalos personalizados.">
   <style>
     :root {
       --pink:#d99da9; --pink-light:#f8e9eb; --rose:#a85e70;
@@ -36,33 +36,29 @@
     .section-heading p{font:14px Arial,sans-serif;color:var(--muted);line-height:1.7}
     .intro{background:var(--pink-light);text-align:center;padding:55px 20px}
     .intro h2{font-size:31px;font-weight:normal;color:var(--rose);margin-bottom:15px}
-    .intro p{max-width:650px;margin:auto;font:14px Arial,sans-serif;line-height:1.9;color:var(--muted)}
+    .intro p{max-width:720px;margin:auto;font:14px Arial,sans-serif;line-height:1.9;color:var(--muted)}
     .filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:35px}
     .filter{padding:10px 20px;border:1px solid var(--pink);background:transparent;color:var(--rose);border-radius:30px;cursor:pointer;font:12px Arial,sans-serif}
     .filter.active,.filter:hover{background:var(--rose);color:white}
     .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:27px}
     .product{background:white;border:1px solid var(--border);transition:.3s;overflow:hidden}
     .product:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(168,94,112,.10)}
-    .product-image{height:300px;background:var(--pink-light);overflow:hidden}
+    .product-image{height:300px;background:var(--pink-light);overflow:hidden;cursor:zoom-in}
     .product-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
     .product:hover img{transform:scale(1.04)}
     .product-info{padding:20px}
     .product-category{font:10px Arial,sans-serif;color:var(--pink);letter-spacing:2px;text-transform:uppercase}
     .product h3{font-size:20px;font-weight:normal;margin:10px 0}
-    .product-description{color:var(--muted);font:13px Arial,sans-serif;line-height:1.7;min-height:44px}
+    .product-description{color:var(--muted);font:13px Arial,sans-serif;line-height:1.7;min-height:58px}
     .price{display:block;color:var(--rose);font-size:21px;margin:17px 0}
     .product .btn{display:block;text-align:center}
-    .promotions{background:var(--pink-light)}
-    .promo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
-    .promo-card{background:white;padding:32px 25px;text-align:center;border:1px solid var(--border)}
-    .promo-card .flower{font-size:30px;margin-bottom:15px}
-    .promo-card h3{color:var(--rose);font-size:22px;font-weight:normal;margin-bottom:12px}
-    .promo-card p{color:var(--muted);font:13px Arial,sans-serif;line-height:1.8}
-    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    .gallery-item{height:270px;overflow:hidden;cursor:pointer;background:var(--pink-light);border:0;padding:0}
-    .gallery-item img{width:100%;height:100%;object-fit:cover;transition:.4s}
-    .gallery-item:hover img{transform:scale(1.07)}
-    .custom-order{background:#f8e9eb}
+    .info-section{background:var(--pink-light)}
+    .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;max-width:1000px;margin:auto}
+    .info-card{background:white;padding:27px 23px;text-align:center;border:1px solid var(--border)}
+    .info-card .flower{font-size:28px;margin-bottom:12px}
+    .info-card h3{color:var(--rose);font-size:20px;font-weight:normal;margin-bottom:10px}
+    .info-card p{color:var(--muted);font:13px Arial,sans-serif;line-height:1.8}
+    .custom-order{background:#fffaf7}
     .form-wrap{max-width:650px;margin:auto;background:white;padding:35px;border:1px solid var(--border)}
     .form-wrap label{display:block;font:12px Arial,sans-serif;color:var(--text);margin:17px 0 8px}
     .form-wrap input,.form-wrap select,.form-wrap textarea{width:100%;padding:13px;border:1px solid var(--border);background:var(--cream);outline-color:var(--pink);color:var(--text);font:13px Arial,sans-serif;border-radius:2px}
@@ -84,8 +80,6 @@
       nav a{font-size:12px}
       .hero{min-height:480px;padding:55px 8%;background-position:center}
       .section{padding:60px 6%}
-      .gallery{grid-template-columns:repeat(2,1fr)}
-      .gallery-item{height:210px}
       .form-wrap{padding:22px}
     }
     @media(max-width:380px){.products{grid-template-columns:1fr}}
@@ -97,7 +91,7 @@
     <a href="#inicio" class="logo">KIORA<small>FLORES Y DETALLES</small></a>
     <nav>
       <a href="#inicio">Inicio</a><a href="#catalogo">Catálogo</a>
-      <a href="#promociones">Promociones</a><a href="#galeria">Galería</a>
+      <a href="#pedidos">Pedidos</a><a href="#personalizado">Personalizados</a>
       <a href="#contacto">Contacto</a>
     </nav>
   </header>
@@ -107,45 +101,41 @@
       <div class="hero-content">
         <div class="eyebrow">Kiora Flores y Detalles</div>
         <h1>Regala flores,<br>regala emociones.</h1>
-        <p>Creamos detalles únicos para expresar lo que las palabras muchas veces no pueden decir.</p>
+        <p>Elige tu regalo especial para esa persona especial. Cada detalle cuenta una historia.</p>
         <a href="#catalogo" class="btn">DESCUBRIR CATÁLOGO</a>
       </div>
     </section>
 
     <section class="intro">
       <h2>Un detalle puede decirlo todo ♡</h2>
-      <p>En Kiora creemos que cada momento merece ser especial. Descubre nuestros bouquets, arreglos florales y regalos personalizados, preparados con cariño para sorprender.</p>
+      <p>Descubre nuestros ramos florales, bouquets y regalos personalizados. También creamos diseños especiales adaptados a tu gusto y presupuesto.</p>
     </section>
 
     <section class="section" id="catalogo">
       <div class="section-heading">
         <span>Encuentra tu favorito</span><h2>Nuestro catálogo</h2>
-        <p>Elige ese detalle que hará sonreír a alguien especial.</p>
+        <p>Precios de referencia del catálogo Kiora. Consulta disponibilidad antes de realizar tu pedido.</p>
       </div>
       <div class="filters" id="filters"></div>
       <div class="products" id="products"></div>
     </section>
 
-    <section class="section promotions" id="promociones">
+    <section class="section info-section" id="pedidos">
       <div class="section-heading">
-        <span>Momentos para celebrar</span><h2>Especiales Kiora</h2>
-        <p>Descubre nuestras propuestas y pregunta por las promociones vigentes.</p>
+        <span>Antes de ordenar</span><h2>Información importante</h2>
+        <p>Queremos que tu detalle llegue fresco, bonito y justo como lo imaginas.</p>
       </div>
-      <div class="promo-grid" id="promoGrid"></div>
-    </section>
-
-    <section class="section" id="galeria">
-      <div class="section-heading">
-        <span>Un poquito de inspiración</span><h2>Galería Kiora</h2>
-        <p>Algunos de nuestros diseños y detalles florales.</p>
+      <div class="info-grid">
+        <article class="info-card"><div class="flower">🌷</div><h3>Cotizaciones</h3><p>Envíanos una foto de referencia o cuéntanos qué tienes en mente para verificar disponibilidad y cotizar tu detalle.</p></article>
+        <article class="info-card"><div class="flower">♡</div><h3>Anticipo del 50%</h3><p>Para apartar tu pedido solicitamos el 50% de anticipo. El resto se liquida antes de la entrega. Aceptamos transferencias y efectivo.</p></article>
+        <article class="info-card"><div class="flower">📅</div><h3>Pedidos con agenda</h3><p>Trabajamos bajo agenda para cuidar la frescura de las flores. Te sugerimos pedir con 1 o 2 días de anticipación, o más tiempo en fechas especiales.</p></article>
       </div>
-      <div class="gallery" id="gallery"></div>
     </section>
 
     <section class="section custom-order" id="personalizado">
       <div class="section-heading">
         <span>Hecho especialmente para ti</span><h2>Personaliza tu regalo</h2>
-        <p>Cuéntanos tu idea y te ayudaremos a crear un detalle único para esa persona especial.</p>
+        <p>Realizamos ramos y regalos personalizados adaptados a tu presupuesto. Cuéntanos tu idea.</p>
       </div>
       <form class="form-wrap" id="orderForm">
         <label for="nombre">Tu nombre</label>
@@ -167,14 +157,14 @@
 
     <section class="contact" id="contacto">
       <h2>Hagamos algo bonito ♡</h2>
-      <p>¿Encontraste tu ramo favorito o tienes una idea especial?<br>Estamos listos para ayudarte con tu pedido.</p>
+      <p>¿Encontraste tu ramo favorito o tienes una idea especial?<br>Comunícate con Kiora y con gusto te atenderemos.</p>
       <a href="#" id="contactButton" class="btn" target="_blank" rel="noopener">HABLAR CON KIORA</a>
     </section>
   </main>
 
   <footer>
     <strong>KIORA</strong><p>FLORES Y DETALLES</p>
-    <p>Detalles que se convierten en recuerdos.</p>
+    <p>Cada detalle cuenta una historia.</p>
     <p>© 2026 Kiora. Todos los derechos reservados.</p>
   </footer>
 
@@ -186,29 +176,40 @@
   </div>
 
   <script>
-    // CONFIGURACIÓN: escribe tu WhatsApp con código de país, sin + ni espacios.
-    const WHATSAPP = "521XXXXXXXXXX";
+    // WhatsApp de contacto tomado del catálogo anterior de Kiora.
+    // Si este número ya no es el de atención, reemplázalo aquí.
+    const WHATSAPP = "529931070945";
 
-    // EDITA AQUÍ TUS PRODUCTOS. Usa precio: null para mostrar "Consultar precio".
+    // Cada producto utiliza una sola fotografía dentro de la carpeta imagenes/.
+    // Los precios corresponden al catálogo PDF anterior y pueden actualizarse aquí.
     const productos = [
-      { nombre:"Ramo de 12 rosas rojas", categoria:"Rosas", descripcion:"Un clásico para expresar amor y cariño.", precio:null, imagen:"imagenes/ramo-rosas.jpg" },
-      { nombre:"Bouquet romántico", categoria:"Bouquets", descripcion:"Flores cuidadosamente seleccionadas y envueltas.", precio:null, imagen:"imagenes/bouquet.jpg" },
-      { nombre:"Ramo de girasoles", categoria:"Girasoles", descripcion:"Un detalle lleno de luz, alegría y color.", precio:null, imagen:"imagenes/girasoles.jpg" },
-      { nombre:"Ramo con globo personalizado", categoria:"Detalles", descripcion:"Flores y un mensaje especial para sorprender.", precio:850, imagen:"imagenes/ramo-globo.jpg" }
-    ];
+      { nombre:"Atardecer Rosado", categoria:"Ramos florales", descripcion:"6 rosas rosadas + 3 gerberas naranjas con centro amarillo, abundante statice morado y nube.", precio:500, imagen:"imagenes/atardecer-rosado.jpg" },
+      { nombre:"Ramo Sutileza y Pureza", categoria:"Ramos florales", descripcion:"5 rosas en tonos blanco y rosa suave, acompañadas de abundante follaje sólido de tono verde fresco.", precio:350, imagen:"imagenes/sutileza-y-pureza.jpg" },
+      { nombre:"Ramo Luz de Noche", categoria:"Ramos florales", descripcion:"2 girasoles + gypsophila + solidago.", precio:410, imagen:"imagenes/luz-de-noche.jpg" },
+      { nombre:"Ramo Amor en Lila", categoria:"Ramos florales", descripcion:"12 crisantemos pompom + gypsophila.", precio:500, imagen:"imagenes/amor-en-lila.jpg" },
+      { nombre:"Ramo Un Sol Para Ti", categoria:"Ramos florales", descripcion:"1 girasol + nubes + envoltura del color de tu preferencia.", precio:380, imagen:"imagenes/un-sol-para-ti.jpg" },
+      { nombre:"Ramo Eres Mi Sol", categoria:"Ramos florales", descripcion:"2 girasoles + claveles rosados + nubes + follaje verde.", precio:450, imagen:"imagenes/eres-mi-sol.jpg" },
+      { nombre:"Ramo Amor Dulce", categoria:"Ramos florales", descripcion:"Una rosa roja + 6 Ferrero + nubes.", precio:400, imagen:"imagenes/amor-dulce.jpg" },
+      { nombre:"Ramo Cinco Razones Para Amarte", categoria:"Ramos florales", descripcion:"5 rosas rojas + nubes.", precio:360, imagen:"imagenes/cinco-razones-para-amarte.jpg" },
+      { nombre:"Ramo Atardecer de Amor", categoria:"Ramos florales", descripcion:"1 girasol + 2 rosas rojas + nubes + chocolates Ferrero Rocher.", precio:500, imagen:"imagenes/atardecer-de-amor.jpg" },
+      { nombre:"Ramo Te Quiero Soleado", categoria:"Ramos florales", descripcion:"6 girasoles + 6 rosas + solidago.", precio:900, imagen:"imagenes/te-quiero-soleado.jpg" },
+      { nombre:"Ramo Dulce Amanecer", categoria:"Ramos florales", descripcion:"6 rosas rosadas + crisantemos + follaje verde (solidago).", precio:480, imagen:"imagenes/dulce-amanecer.jpg" },
+      { nombre:"Ramo Dulce Ternura", categoria:"Ramos florales", descripcion:"1 girasol grande + 4 rosas fucsias + astromelias + follaje verde (solidago).", precio:500, imagen:"imagenes/dulce-ternura.jpg" },
+      { nombre:"Ramo Amanecer Naranja", categoria:"Ramos florales", descripcion:"1 gerbera naranja + 3 rosas blancas + gypsophila + solidago + statice morado.", precio:410, imagen:"imagenes/amanecer-naranja.jpg" },
+      { nombre:"Ramo Tres Suspiros", categoria:"Ramos florales", descripcion:"3 rosas blancas + nubes.", precio:360, imagen:"imagenes/tres-suspiros.jpg" },
+      { nombre:"Ramo Coqueta", categoria:"Ramos florales", descripcion:"1 gerbera + gypsophila + solidago.", precio:350, imagen:"imagenes/coqueta.jpg" },
+      { nombre:"Ramo Princesa", categoria:"Ramos florales", descripcion:"5 rosas rosadas + gypsophila.", precio:440, imagen:"imagenes/princesa.jpg" },
 
-    // EDITA AQUÍ TUS PROMOCIONES REALES.
-    const promociones = [
-      { icono:"🌹", titulo:"Bouquets especiales", descripcion:"Diseños florales para sorprender en cualquier ocasión." },
-      { icono:"🎈", titulo:"Regalos personalizados", descripcion:"Agrega globos, dedicatorias y detalles especiales." },
-      { icono:"💐", titulo:"Tu idea, nuestro diseño", descripcion:"Cotiza tu arreglo de acuerdo con tu presupuesto." }
-    ];
+      { nombre:"Bouquet Pasión Eterna", categoria:"Bouquets", descripcion:"20 rosas rojas naturales premium + nube natural (gypsophila) + envoltura con bordes blancos + moño de listón + tarjeta personalizada.", precio:800, imagen:"imagenes/bouquet-pasion-eterna.jpg" },
+      { nombre:"Bouquet Pureza", categoria:"Bouquets", descripcion:"7 rosas blancas naturales + nube natural (gypsophila) + follaje verde + envoltura color crema + listón de satén + tarjeta personalizada.", precio:500, imagen:"imagenes/bouquet-pureza.jpg" },
+      { nombre:"Mini Bouquet Ferrero", categoria:"Bouquets", descripcion:"3 Ferrero Rocher + nubes + envoltura premium + tarjeta personalizada.", precio:299, imagen:"imagenes/mini-bouquet-ferrero.jpg" },
+      { nombre:"Bouquet Dulce Mix", categoria:"Bouquets", descripcion:"Mix de chocolates (Kinder Bueno, Twix, Kit Kat, Snickers, etc.) + envoltura premium + listón decorativo + tarjeta personalizada con texto a tu elección.", precio:800, imagen:"imagenes/bouquet-dulce-mix.jpg" },
+      { nombre:"Bouquet Dulce Encanto", categoria:"Bouquets", descripcion:"Rosas naturales + nubes + eucalipto + mix de chocolates Kinder + envoltura premium + listón de satén + tarjeta personalizada.", precio:1200, imagen:"imagenes/bouquet-dulce-encanto.jpg" },
 
-    const fotografias = [
-      "imagenes/ramo-rosas.jpg",
-      "imagenes/bouquet.jpg",
-      "imagenes/girasoles.jpg",
-      "imagenes/ramo-globo.jpg"
+      { nombre:"Huacal de Amor", categoria:"Regalos y detalles", descripcion:"Cajita de madera + 8 rosas rojas naturales + nubes + letrero personalizado a tu elección + globo de corazón.", precio:650, imagen:"imagenes/huacal-de-amor.jpg" },
+      { nombre:"Vaso Corazón", categoria:"Regalos y detalles", descripcion:"Vaso de plástico con tapa y popote + flores artificiales + globo corazón metálico con mensaje.", precio:480, imagen:"imagenes/vaso-corazon.jpg" },
+      { nombre:"Cajita Beauty", categoria:"Regalos y detalles", descripcion:"Cajita kraft decorada con papel china y contenido 100% personalizable: accesorios girly y tarjeta con mensaje personalizado.", precio:500, imagen:"imagenes/cajita-beauty.jpg" },
+      { nombre:"Bouquet de Globos Personalizado con Helio", categoria:"Regalos y detalles", descripcion:"2 globos estrella + globo burbuja con globo dorado por dentro y letras personalizadas + globo plateado + globo dorado + 8 globos rojos.", precio:1600, imagen:"imagenes/bouquet-globos-helio.jpg" }
     ];
 
     function whatsappLink(mensaje) {
@@ -216,66 +217,50 @@
     }
 
     function dinero(precio) {
-      if (precio === null || precio === undefined) return "Consultar precio";
-      return precio.toLocaleString("es-MX", {
-        style:"currency", currency:"MXN", maximumFractionDigits:0
-      });
+      return precio.toLocaleString("es-MX", { style:"currency", currency:"MXN", maximumFractionDigits:0 });
     }
 
     function renderizarProductos(categoria = "Todos") {
       const contenedor = document.getElementById("products");
-      const filtrados = categoria === "Todos"
-        ? productos : productos.filter(p => p.categoria === categoria);
-
-      contenedor.innerHTML = filtrados.map(p => `
+      const filtrados = categoria === "Todos" ? productos : productos.filter(p => p.categoria === categoria);
+      contenedor.innerHTML = filtrados.map((p, index) => `
         <article class="product">
-          <div class="product-image"><img src="${p.imagen}" alt="${p.nombre}" loading="lazy"></div>
+          <div class="product-image" role="button" tabindex="0" data-image="${p.imagen}" data-name="${p.nombre}" aria-label="Ampliar foto de ${p.nombre}">
+            <img src="${p.imagen}" alt="${p.nombre}" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#f8e9eb,#fffaf7)';">
+          </div>
           <div class="product-info">
             <span class="product-category">${p.categoria}</span>
             <h3>${p.nombre}</h3>
             <p class="product-description">${p.descripcion}</p>
-            <span class="price">${dinero(p.precio)}</span>
+            <span class="price">${dinero(p.precio)} MXN</span>
             <a class="btn" target="_blank" rel="noopener"
-              href="${whatsappLink("Hola, Kiora. Me interesa: " + p.nombre + ". ¿Me pueden dar más información?")}">
+              href="${whatsappLink("Hola, Kiora. Me interesa: " + p.nombre + " (precio de catálogo: " + dinero(p.precio) + "). ¿Está disponible?")}">
               PEDIR POR WHATSAPP
             </a>
           </div>
         </article>`).join("");
+
+      document.querySelectorAll(".product-image").forEach(item => {
+        const abrir = () => {
+          const img = document.getElementById("lightboxImage");
+          img.src = item.dataset.image;
+          img.alt = item.dataset.name;
+          document.getElementById("lightbox").classList.add("open");
+        };
+        item.addEventListener("click", abrir);
+        item.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(); } });
+      });
     }
 
     function renderizarFiltros() {
       const categorias = ["Todos", ...new Set(productos.map(p => p.categoria))];
       document.getElementById("filters").innerHTML = categorias.map((categoria, index) => `
-        <button class="filter ${index === 0 ? "active" : ""}" data-category="${categoria}">
-          ${categoria}
-        </button>`).join("");
-
+        <button class="filter ${index === 0 ? "active" : ""}" data-category="${categoria}">${categoria}</button>`).join("");
       document.querySelectorAll(".filter").forEach(boton => {
         boton.addEventListener("click", () => {
           document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
           boton.classList.add("active");
           renderizarProductos(boton.dataset.category);
-        });
-      });
-    }
-
-    function renderizarPromociones() {
-      document.getElementById("promoGrid").innerHTML = promociones.map(p => `
-        <article class="promo-card">
-          <div class="flower">${p.icono}</div><h3>${p.titulo}</h3><p>${p.descripcion}</p>
-        </article>`).join("");
-    }
-
-    function renderizarGaleria() {
-      document.getElementById("gallery").innerHTML = fotografias.map((foto, index) => `
-        <button class="gallery-item" type="button" data-image="${foto}" aria-label="Ampliar fotografía ${index + 1}">
-          <img src="${foto}" alt="Diseño floral Kiora ${index + 1}" loading="lazy">
-        </button>`).join("");
-
-      document.querySelectorAll(".gallery-item").forEach(item => {
-        item.addEventListener("click", () => {
-          document.getElementById("lightboxImage").src = item.dataset.image;
-          document.getElementById("lightbox").classList.add("open");
         });
       });
     }
@@ -286,34 +271,26 @@
       const ocasion = document.getElementById("ocasion").value;
       const presupuesto = document.getElementById("presupuesto").value;
       const idea = document.getElementById("idea").value.trim();
-
-      const mensaje = "¡Hola, Kiora Flores y Detalles! 🌷\n\n" +
-        "Quiero realizar un pedido personalizado.\n\n" +
-        "Nombre: " + nombre + "\n" +
-        "Ocasión: " + ocasion + "\n" +
-        "Presupuesto: $" + presupuesto + " MXN\n" +
-        "Mi idea: " + idea;
-
+      const mensaje = "¡Hola, Kiora Flores y Detalles! 🌷\n\nQuiero realizar un pedido personalizado.\nNombre: " + nombre +
+        "\nOcasión: " + ocasion + "\nPresupuesto: $" + presupuesto + " MXN\nMi idea: " + idea;
       window.open(whatsappLink(mensaje), "_blank");
     });
 
     document.getElementById("closeLightbox").addEventListener("click", () => {
       document.getElementById("lightbox").classList.remove("open");
     });
-
     document.getElementById("lightbox").addEventListener("click", e => {
       if (e.target.id === "lightbox") e.currentTarget.classList.remove("open");
     });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") document.getElementById("lightbox").classList.remove("open");
+    });
 
-    document.getElementById("contactButton").href =
-      whatsappLink("Hola, Kiora. Me gustaría conocer su catálogo.");
-    document.getElementById("floatButton").href =
-      whatsappLink("Hola, Kiora. Quiero información sobre sus flores.");
+    document.getElementById("contactButton").href = whatsappLink("Hola, Kiora. Me gustaría conocer su catálogo.");
+    document.getElementById("floatButton").href = whatsappLink("Hola, Kiora. Quiero información sobre sus flores.");
 
     renderizarFiltros();
     renderizarProductos();
-    renderizarPromociones();
-    renderizarGaleria();
   </script>
 </body>
 </html>
