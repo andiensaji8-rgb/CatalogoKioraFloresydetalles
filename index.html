@@ -1,579 +1,319 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kiora | Flores y Detalles — Ramos, bouquets y regalos personalizados</title>
-<meta name="description" content="Kiora Flores y Detalles: ramos florales, bouquets y regalos personalizados. Arma tu pedido y envíalo por WhatsApp.">
-<meta name="theme-color" content="#a85e70">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kiora | Flores y Detalles">
-<meta property="og:description" content="Ramos florales, bouquets y regalos personalizados. Cada detalle cuenta una historia.">
-<meta property="og:image" content="imagenes/portada.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌷%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Florist","name":"Kiora Flores y Detalles","telephone":"+529601011637","description":"Ramos florales, bouquets y regalos personalizados.","address":{"@type":"PostalAddress","streetAddress":"Calle Cuitláhuac 110, Nueva Villahermosa","addressLocality":"Villahermosa","addressRegion":"Tabasco","addressCountry":"MX"},"areaServed":"Villahermosa, Tabasco","sameAs":["https://www.facebook.com/FloresKiora1226","https://www.instagram.com/floreskiora"]}</script>
-<style>
-:root{--rose:#a85e70;--rose-d:#874858;--pink:#d99da9;--blush:#f8e9eb;--cream:#fffaf7;--ink:#4a3639;--muted:#7a6568;--leaf:#6d7a60;--line:#f0dce0;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost",Arial,sans-serif}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:var(--cream);color:var(--ink);font:16px/1.6 var(--sans)}
-a{color:inherit;text-decoration:none}
-button,input,select,textarea{font:inherit;color:inherit}
-:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
-.topbar{background:var(--rose);color:#fff;text-align:center;padding:8px 12px;font-size:13px}
-header{position:sticky;top:0;z-index:30;background:rgba(255,250,247,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:8px 6%;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.logo img{display:block;height:72px;width:auto;max-width:210px;object-fit:contain}
-nav{display:flex;align-items:center;gap:26px;font-size:15px}
-nav a:hover{color:var(--rose)}
-.hbtns{display:flex;align-items:center;gap:10px}
-.cart-btn,.menu{background:none;border:1px solid var(--pink);border-radius:30px;padding:8px 16px;cursor:pointer;color:var(--rose);font-size:14px}
-.cart-btn:hover,.menu:hover{background:var(--blush)}
-.cart-btn b{background:var(--rose);color:#fff;border-radius:20px;padding:1px 8px;margin-left:6px;font-weight:500}
-.menu{display:none}
-.btn{display:inline-block;background:var(--rose);color:#fff;padding:13px 26px;border:1px solid var(--rose);border-radius:3px;font-size:15px;cursor:pointer;transition:background .25s}
-.btn:hover{background:var(--rose-d);border-color:var(--rose-d)}
-.btn.ghost{background:transparent;color:#fff;border-color:#fff}
-.btn.ghost:hover{background:rgba(255,255,255,.18)}
-.btn.line{background:transparent;color:var(--rose)}
-.btn.line:hover{background:var(--blush)}
-.hero{position:relative;isolation:isolate;min-height:620px;color:#fff;overflow:hidden;background:linear-gradient(135deg,#5e3040,#a85e70 62%,#d99da9)}
-.bgi{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
-.collage{position:relative;width:min(440px,38vw);height:470px;flex-shrink:0}
-.collage img{position:absolute;width:62%;aspect-ratio:4/5;object-fit:cover;border:7px solid #fff;box-shadow:0 18px 44px #0006;background:var(--blush)}
-.collage img:nth-child(1){left:0;top:34px;transform:rotate(-5deg)}
-.collage img:nth-child(2){right:0;top:0;transform:rotate(4deg);z-index:1}
-.collage img:nth-child(3){left:20%;bottom:0;transform:rotate(-1deg);z-index:2}
-.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;gap:40px;padding:70px 8% 90px;opacity:0;visibility:hidden;transition:opacity .9s,visibility .9s}
-.slide.on{opacity:1;visibility:visible}
-.slide .bg{position:absolute;inset:0;background:var(--img) center/cover;z-index:-1}
-.slide.blur .bg{filter:blur(26px) brightness(.75);transform:scale(1.12)}
-.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(48,25,31,.66),rgba(48,25,31,.08));z-index:-1}
-.hero-in{animation:none}
-.slide.on .hero-in{animation:rise .9s both}
-.hero h2{font:500 clamp(46px,7vw,84px)/1.02 var(--serif);margin-bottom:20px}
-.tag{display:inline-block;margin-bottom:14px;background:rgba(255,250,247,.93);color:var(--rose);border-radius:30px;padding:3px 14px;font-size:14px}
-.photo{width:min(340px,32vw);aspect-ratio:4/5;object-fit:cover;border:8px solid #fff;box-shadow:0 20px 50px #0006;flex-shrink:0;transform:rotate(2deg);background:var(--blush)}
-.dots{position:absolute;left:0;right:0;bottom:26px;display:flex;justify-content:center;gap:10px;z-index:2}
-.dots button{width:11px;height:11px;border-radius:10px;border:1px solid #fff;background:transparent;cursor:pointer;padding:0;transition:width .3s}
-.dots button.on{background:#fff;width:30px}
-.arr{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.18);color:#fff;font-size:26px;cursor:pointer}
-.arr:hover{background:rgba(255,255,255,.32)}
-.slide.light{background:var(--cream);color:var(--ink)}
-.slide.light::after{display:none}
-.slide.light .blob{position:absolute;right:6%;top:50%;width:min(520px,36vw);aspect-ratio:1;transform:translateY(-52%);border-radius:50%;background:var(--blush)}
-.slide.light .hero-in{position:relative}
-.slide.light h1{color:#5e3040}
-.slide.light p{color:var(--muted)}
-.slide.light .btn.line{border-color:var(--rose-d);color:var(--rose-d)}
-.slide.light .btn.line:hover{background:var(--blush)}
-.facts{display:flex;gap:30px;list-style:none;margin-top:30px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
-.facts b{display:block;font-weight:500;font-size:16px;color:var(--ink)}
-.arches{position:relative;width:min(520px,38vw);height:500px;flex-shrink:0}
-.arches img{position:absolute;object-fit:cover;background:var(--blush)}
-.arches .a1{left:0;top:0;width:60%;height:92%;border-radius:999px 999px 0 0}
-.arches .a2{right:0;top:18%;width:48%;height:72%;border-radius:999px 999px 0 0;border:8px solid var(--cream);box-sizing:border-box}
-.chip{position:absolute;background:#fff;border:1px solid var(--line);padding:10px 16px;box-shadow:0 10px 28px rgba(168,94,112,.18);font-size:14px;color:var(--rose)}
-.chip b{display:block;font:500 22px/1.1 var(--serif);color:var(--ink)}
-.chip.c1{left:-24px;bottom:16%}.chip.c2{right:-8px;bottom:-4px}
-.hero.lt .arr{background:rgba(135,72,88,.14);color:var(--rose-d)}
-.hero.lt .arr:hover{background:rgba(135,72,88,.26)}
-.hero.lt .dots button{border-color:var(--rose-d)}
-.hero.lt .dots button.on{background:var(--rose-d)}
-.arr.l{left:14px}.arr.r{right:14px}
-.hero-in{max-width:620px;animation:rise .9s ease both}
-@keyframes rise{from{opacity:0;transform:translateY(18px)}}
-.hero h1{font:500 clamp(46px,7vw,84px)/1.02 var(--serif);margin-bottom:20px}
-.hero p{font-size:19px;max-width:480px;margin-bottom:30px}
-.hero .btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px}
-.chips{display:flex;gap:10px;flex-wrap:wrap;list-style:none;font-size:14px}
-.chips li{border:1px solid rgba(255,255,255,.55);border-radius:30px;padding:5px 15px;background:rgba(255,255,255,.1)}
-.intro{background:var(--blush);text-align:center;padding:56px 20px}
-.intro h2,.head h2,.contact h2{font:500 clamp(32px,4.5vw,46px)/1.15 var(--serif);color:var(--rose)}
-.intro p{max-width:680px;margin:14px auto 0;color:var(--muted)}
-.sec{padding:84px 6%}
-.head{text-align:center;margin-bottom:34px}
-.head p{color:var(--muted);max-width:560px;margin:10px auto 0}
-.tools{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;margin-bottom:12px}
-.tools input,.tools select{padding:10px 16px;border:1px solid var(--line);border-radius:30px;background:#fff;font-size:14px;min-width:200px}
-.filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}
-.filter{padding:8px 18px;border:1px solid var(--pink);background:transparent;color:var(--rose);border-radius:30px;cursor:pointer;font-size:14px}
-.filter.on,.filter:hover{background:var(--rose);color:#fff}
-.count{text-align:center;color:var(--muted);font-size:14px;margin-bottom:26px}
-.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px;max-width:1280px;margin:auto}
-.product{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
-.product:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(168,94,112,.12)}
-.pimg{position:relative;aspect-ratio:4/5;background:linear-gradient(135deg,var(--blush),var(--cream));overflow:hidden;cursor:zoom-in;border:0;padding:0;width:100%;display:block}
-.pimg img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.product:hover .pimg img{transform:scale(1.04)}
-.pimg i{position:absolute;left:12px;top:12px;background:rgba(255,250,247,.94);color:var(--rose);border-radius:20px;padding:2px 12px;font-size:12px;font-style:normal}
-.pinfo{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
-.cat{font-size:13px;color:var(--leaf)}
-.product h3{font:500 24px/1.15 var(--serif);margin:4px 0 8px}
-.pdesc{color:var(--muted);font-size:14px;flex:1}
-.price{font:500 25px var(--serif);color:var(--rose);margin:14px 0}
-.row{display:flex;gap:8px}
-.row .btn{flex:1;text-align:center;padding:11px 8px;font-size:14px}
-.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
-.how{background:var(--blush)}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;max-width:1080px;margin:auto;list-style:none;counter-reset:s}
-.steps li{background:#fff;border:1px solid var(--line);padding:26px 22px;counter-increment:s}
-.steps li::before{content:counter(s);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--rose);color:#fff;font:500 21px var(--serif);margin-bottom:14px}
-.steps h3{font:500 23px var(--serif);color:var(--rose);margin-bottom:6px}
-.steps p{font-size:14px;color:var(--muted)}
-.form-wrap{max-width:680px;margin:auto;background:#fff;border:1px solid var(--line);padding:36px}
-.form-wrap label,.dr label{display:block;font-size:14px;margin:16px 0 6px}
-.form-wrap input,.form-wrap select,.form-wrap textarea,.dr input,.dr select{width:100%;padding:12px;border:1px solid var(--line);background:var(--cream);border-radius:2px;font-size:15px}
-.form-wrap textarea{min-height:110px;resize:vertical}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-wrap .btn{width:100%;margin-top:22px}
-.faq{max-width:760px;margin:auto}
-details{background:#fff;border:1px solid var(--line);margin-bottom:10px}
-summary{cursor:pointer;padding:16px 20px;font:500 22px var(--serif);color:var(--rose);list-style:none;display:flex;justify-content:space-between;gap:12px}
-summary::after{content:"+";font-size:26px;line-height:1}
-details[open] summary::after{content:"–"}
-details p{padding:0 20px 18px;color:var(--muted);font-size:15px}
-.contact{text-align:center;padding:80px 20px;background:var(--blush)}
-.contact p{color:var(--muted);margin:14px 0 26px}
-footer{background:#61444b;color:#fff;text-align:center;padding:38px 16px;font-size:14px;line-height:2}
-footer strong{font:600 28px var(--serif);letter-spacing:4px}
-.envios{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1040px;margin:auto}
-.calc,.mapbox{background:#fff;border:1px solid var(--line);padding:28px}
-.calc h3{font:500 26px var(--serif);color:var(--rose)}
-.calc select{width:100%;padding:12px;border:1px solid var(--line);background:var(--cream);border-radius:2px;font-size:15px}
-.calc label{display:block;font-size:14px;margin:14px 0 6px}
-.res{font-size:18px;margin:16px 0;padding:14px;background:var(--blush);text-align:center}
-.zlist{list-style:none;margin-bottom:14px;font-size:14px}
-.zlist small{color:var(--muted)}
-.zlist li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
-.calc .btn{width:100%;text-align:center;margin-top:12px}
-.mapbox iframe{width:100%;height:240px;border:0;margin-bottom:14px;background:var(--blush)}
-.mapbox p{font-size:14px;color:var(--muted)}
-.social{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px}
-.social a{border:1px solid var(--pink);color:var(--rose);border-radius:30px;padding:7px 18px;font-size:14px}
-.social a:hover{background:var(--blush)}
-footer .social a{color:#fff;border-color:rgba(255,255,255,.5)}
-footer .social a:hover{background:rgba(255,255,255,.12)}
-.dfoot{max-height:64%;overflow:auto}
-.wa{position:fixed;right:20px;bottom:20px;z-index:25;background:#1fa855;color:#fff;border-radius:50px;padding:13px 20px;font-weight:500;font-size:15px;box-shadow:0 5px 20px #0003}
-.veil{position:fixed;inset:0;background:rgba(30,20,23,.55);z-index:55;opacity:0;visibility:hidden;transition:.3s}
-.veil.on{opacity:1;visibility:visible}
-.dr{position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:#fff;z-index:60;display:flex;flex-direction:column;transform:translateX(100%);visibility:hidden;transition:transform .3s,visibility .3s}
-.dr.on{transform:none;visibility:visible}
-.dr header{position:static;background:#fff;padding:16px 20px;backdrop-filter:none}
-.dr h2{font:500 28px var(--serif);color:var(--rose)}
-.x{background:none;border:0;font-size:32px;line-height:1;cursor:pointer;color:var(--muted)}
-.items{flex:1;overflow:auto;padding:6px 20px;list-style:none}
-.items li{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
-.items img{width:56px;height:56px;object-fit:cover;background:var(--blush)}
-.items .n{flex:1;font-size:14px;line-height:1.3}
-.items .n small{display:block;color:var(--rose)}
-.qty{display:flex;align-items:center;gap:6px}
-.qty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--pink);background:none;color:var(--rose);cursor:pointer}
-.dfoot{padding:16px 20px 20px;border-top:1px solid var(--line);background:var(--cream)}
-.tot{display:flex;justify-content:space-between;font:500 24px var(--serif);margin-bottom:4px}
-.note{font-size:13px;color:var(--muted)}
-.dfoot .btn{width:100%;margin-top:14px}
-.clear-btn{background:none;border:0;color:var(--muted);font-size:13px;text-decoration:underline;cursor:pointer;padding:0}
-.clear-btn:hover{color:var(--rose)}
-.lb{display:none;position:fixed;inset:0;background:rgba(30,20,23,.93);z-index:70;flex-direction:column;justify-content:center;align-items:center;padding:20px;gap:12px}
-.lb.on{display:flex}
-.lb img{max-width:92%;max-height:74vh;object-fit:contain}
-.lb p{color:#fff;text-align:center}
-.lb .x{position:absolute;top:14px;right:20px;color:#fff;font-size:40px}
-.lb .nav{position:absolute;top:50%;background:rgba(255,255,255,.14);color:#fff;border:0;width:46px;height:46px;border-radius:50%;font-size:26px;cursor:pointer}
-.lb .pv{left:14px}.lb .nx{right:14px}
-.toast{position:fixed;left:50%;bottom:84px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:10px 20px;border-radius:30px;font-size:14px;opacity:0;pointer-events:none;transition:.3s;z-index:80}
-.toast.on{opacity:1;transform:translate(-50%,0)}
-@media(max-width:820px){
-header{padding:8px 4%;flex-wrap:wrap}
-.logo img{height:56px}
-.menu{display:block}
-nav{display:none;order:3;width:100%;flex-direction:column;gap:0;padding-bottom:8px}
-nav.on{display:flex}
-nav a{padding:12px 0;border-top:1px solid var(--line);width:100%}
-.hero{min-height:560px}.slide{padding:48px 7% 84px}.arr,.collage,.arches,.slide.light .blob{display:none}
-.slide{flex-direction:column;justify-content:center;align-items:flex-start;gap:22px}
-.hero h1,.hero h2{font-size:clamp(38px,10vw,54px);margin-bottom:12px}
-.hero p{font-size:16px;margin-bottom:18px}
-.hero .btns{margin-bottom:18px}
-.photo{display:block;width:150px;aspect-ratio:4/5;border-width:5px;align-self:flex-end;margin-top:-12px}
-.facts{flex-wrap:wrap;gap:14px 24px}
-.sec{padding:60px 5%}
-.form-wrap{padding:22px}
-.g2,.envios{grid-template-columns:1fr}
-}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiora | Flores y Detalles</title>
+  <meta name="description" content="Kiora Flores y Detalles. Bouquets, rosas, arreglos florales y regalos personalizados en Villahermosa, Tabasco.">
+  <style>
+    :root {
+      --pink:#d99da9; --pink-light:#f8e9eb; --rose:#a85e70;
+      --cream:#fffaf7; --white:#fff; --text:#59464a;
+      --muted:#927d80; --green:#77836a; --border:#f0dce0;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background:var(--cream);color:var(--text);font-family:Georgia,serif}
+    button,input,textarea,select{font:inherit}
+    a{text-decoration:none;color:inherit}
+    .topbar{background:var(--rose);color:white;text-align:center;padding:9px 12px;font:11px Arial,sans-serif;letter-spacing:1.5px}
+    header{background:rgba(255,250,247,.97);padding:17px 7%;display:flex;align-items:center;justify-content:space-between;gap:20px;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border)}
+    .logo{color:var(--rose);font-size:30px;letter-spacing:4px;font-weight:bold;line-height:1}
+    .logo small{display:block;text-align:center;font:9px Arial,sans-serif;letter-spacing:3px;margin-top:7px}
+    nav{display:flex;align-items:center;gap:25px;font:13px Arial,sans-serif}
+    nav a:hover{color:var(--rose)}
+    .hero{min-height:570px;background:linear-gradient(90deg,rgba(48,25,31,.53),rgba(48,25,31,.05)),url("imagenes/portada.jpg") center/cover no-repeat;display:flex;align-items:center;padding:70px 10%;color:white}
+    .hero-content{max-width:570px}
+    .eyebrow{text-transform:uppercase;letter-spacing:3px;font:11px Arial,sans-serif;margin-bottom:20px}
+    .hero h1{font-size:clamp(42px,6vw,72px);font-weight:normal;line-height:1.08;margin-bottom:20px}
+    .hero p{font-size:17px;line-height:1.8;margin-bottom:30px}
+    .btn{display:inline-block;background:var(--rose);color:white;padding:15px 27px;border:1px solid var(--rose);border-radius:3px;font:12px Arial,sans-serif;letter-spacing:1px;cursor:pointer;transition:.25s}
+    .btn:hover{background:#874858;border-color:#874858}
+    .section{padding:85px 7%}
+    .section-heading{text-align:center;margin-bottom:38px}
+    .section-heading span{color:var(--pink);font:11px Arial,sans-serif;letter-spacing:3px;text-transform:uppercase}
+    .section-heading h2{font-size:clamp(29px,4vw,40px);font-weight:normal;color:var(--rose);margin:12px 0}
+    .section-heading p{font:14px Arial,sans-serif;color:var(--muted);line-height:1.7}
+    .intro{background:var(--pink-light);text-align:center;padding:55px 20px}
+    .intro h2{font-size:31px;font-weight:normal;color:var(--rose);margin-bottom:15px}
+    .intro p{max-width:650px;margin:auto;font:14px Arial,sans-serif;line-height:1.9;color:var(--muted)}
+    .filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:35px}
+    .filter{padding:10px 20px;border:1px solid var(--pink);background:transparent;color:var(--rose);border-radius:30px;cursor:pointer;font:12px Arial,sans-serif}
+    .filter.active,.filter:hover{background:var(--rose);color:white}
+    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:27px}
+    .product{background:white;border:1px solid var(--border);transition:.3s;overflow:hidden}
+    .product:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(168,94,112,.10)}
+    .product-image{height:300px;background:var(--pink-light);overflow:hidden}
+    .product-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .product:hover img{transform:scale(1.04)}
+    .product-info{padding:20px}
+    .product-category{font:10px Arial,sans-serif;color:var(--pink);letter-spacing:2px;text-transform:uppercase}
+    .product h3{font-size:20px;font-weight:normal;margin:10px 0}
+    .product-description{color:var(--muted);font:13px Arial,sans-serif;line-height:1.7;min-height:44px}
+    .price{display:block;color:var(--rose);font-size:21px;margin:17px 0}
+    .product .btn{display:block;text-align:center}
+    .promotions{background:var(--pink-light)}
+    .promo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+    .promo-card{background:white;padding:32px 25px;text-align:center;border:1px solid var(--border)}
+    .promo-card .flower{font-size:30px;margin-bottom:15px}
+    .promo-card h3{color:var(--rose);font-size:22px;font-weight:normal;margin-bottom:12px}
+    .promo-card p{color:var(--muted);font:13px Arial,sans-serif;line-height:1.8}
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .gallery-item{height:270px;overflow:hidden;cursor:pointer;background:var(--pink-light);border:0;padding:0}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;transition:.4s}
+    .gallery-item:hover img{transform:scale(1.07)}
+    .custom-order{background:#f8e9eb}
+    .form-wrap{max-width:650px;margin:auto;background:white;padding:35px;border:1px solid var(--border)}
+    .form-wrap label{display:block;font:12px Arial,sans-serif;color:var(--text);margin:17px 0 8px}
+    .form-wrap input,.form-wrap select,.form-wrap textarea{width:100%;padding:13px;border:1px solid var(--border);background:var(--cream);outline-color:var(--pink);color:var(--text);font:13px Arial,sans-serif;border-radius:2px}
+    .form-wrap textarea{resize:vertical;min-height:100px}
+    .form-wrap .btn{width:100%;margin-top:22px}
+    .contact{text-align:center;padding:75px 20px;background:var(--cream)}
+    .contact h2{color:var(--rose);font-size:37px;font-weight:normal;margin-bottom:15px}
+    .contact p{color:var(--muted);font:14px Arial,sans-serif;line-height:1.8;margin-bottom:25px}
+    footer{background:#61444b;color:white;text-align:center;padding:35px 15px;font:12px Arial,sans-serif;line-height:2}
+    footer strong{font:bold 22px Georgia,serif;letter-spacing:3px}
+    .whatsapp-float{position:fixed;right:22px;bottom:22px;z-index:20;background:#25D366;color:white;border-radius:50px;padding:15px 19px;font:bold 13px Arial,sans-serif;box-shadow:0 5px 20px #0002}
+    .lightbox{display:none;position:fixed;inset:0;background:rgba(30,20,23,.92);z-index:50;justify-content:center;align-items:center;padding:25px}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:95%;max-height:85vh;object-fit:contain}
+    .lightbox button{position:absolute;top:20px;right:25px;background:none;color:white;border:none;font-size:35px;cursor:pointer}
+    @media(max-width:700px){
+      header{flex-direction:column;padding:16px}
+      nav{gap:15px;flex-wrap:wrap;justify-content:center}
+      nav a{font-size:12px}
+      .hero{min-height:480px;padding:55px 8%;background-position:center}
+      .section{padding:60px 6%}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .gallery-item{height:210px}
+      .form-wrap{padding:22px}
+    }
+    @media(max-width:380px){.products{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-<div class="topbar">Flores y detalles para cada momento especial ♡</div>
-<header>
-  <a href="#inicio" class="logo" aria-label="Kiora Flores y Detalles"><img src="imagenes/Kiora.png" alt="Logo de Kiora Flores y Detalles"></a>
-  <nav id="nav">
-    <a href="#catalogo">Catálogo</a><a href="#como">Cómo pedir</a><a href="#envios">Envíos</a><a href="#personalizado">Personalizados</a><a href="#preguntas">Preguntas</a><a href="#contacto">Contacto</a>
-  </nav>
-  <div class="hbtns">
-    <button class="cart-btn" id="openCart" type="button">Mi pedido<b id="cnt">0</b></button>
-    <button class="menu" id="menu" type="button" aria-expanded="false" aria-controls="nav">Menú</button>
+  <div class="topbar">FLORES Y DETALLES PARA CADA MOMENTO ESPECIAL ♡</div>
+  <header>
+    <a href="#inicio" class="logo">KIORA<small>FLORES Y DETALLES</small></a>
+    <nav>
+      <a href="#inicio">Inicio</a><a href="#catalogo">Catálogo</a>
+      <a href="#promociones">Promociones</a><a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <div class="eyebrow">Kiora Flores y Detalles</div>
+        <h1>Regala flores,<br>regala emociones.</h1>
+        <p>Creamos detalles únicos para expresar lo que las palabras muchas veces no pueden decir.</p>
+        <a href="#catalogo" class="btn">DESCUBRIR CATÁLOGO</a>
+      </div>
+    </section>
+
+    <section class="intro">
+      <h2>Un detalle puede decirlo todo ♡</h2>
+      <p>En Kiora creemos que cada momento merece ser especial. Descubre nuestros bouquets, arreglos florales y regalos personalizados, preparados con cariño para sorprender.</p>
+    </section>
+
+    <section class="section" id="catalogo">
+      <div class="section-heading">
+        <span>Encuentra tu favorito</span><h2>Nuestro catálogo</h2>
+        <p>Elige ese detalle que hará sonreír a alguien especial.</p>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="products" id="products"></div>
+    </section>
+
+    <section class="section promotions" id="promociones">
+      <div class="section-heading">
+        <span>Momentos para celebrar</span><h2>Especiales Kiora</h2>
+        <p>Descubre nuestras propuestas y pregunta por las promociones vigentes.</p>
+      </div>
+      <div class="promo-grid" id="promoGrid"></div>
+    </section>
+
+    <section class="section" id="galeria">
+      <div class="section-heading">
+        <span>Un poquito de inspiración</span><h2>Galería Kiora</h2>
+        <p>Algunos de nuestros diseños y detalles florales.</p>
+      </div>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <section class="section custom-order" id="personalizado">
+      <div class="section-heading">
+        <span>Hecho especialmente para ti</span><h2>Personaliza tu regalo</h2>
+        <p>Cuéntanos tu idea y te ayudaremos a crear un detalle único para esa persona especial.</p>
+      </div>
+      <form class="form-wrap" id="orderForm">
+        <label for="nombre">Tu nombre</label>
+        <input id="nombre" name="nombre" type="text" placeholder="¿Cómo te llamas?" required>
+        <label for="ocasion">¿Para qué ocasión?</label>
+        <select id="ocasion" name="ocasion" required>
+          <option value="">Selecciona una ocasión</option>
+          <option>Cumpleaños</option><option>Aniversario</option>
+          <option>San Valentín</option><option>Graduación</option>
+          <option>Declaración de amor</option><option>Otro momento especial</option>
+        </select>
+        <label for="presupuesto">Presupuesto aproximado (MXN)</label>
+        <input id="presupuesto" name="presupuesto" type="number" min="1" placeholder="Ej. 800" required>
+        <label for="idea">Cuéntanos cómo imaginas tu regalo</label>
+        <textarea id="idea" name="idea" placeholder="Colores, flores, globo, dedicatoria, etc." required></textarea>
+        <button class="btn" type="submit">ENVIAR MI IDEA POR WHATSAPP</button>
+      </form>
+    </section>
+
+    <section class="contact" id="contacto">
+      <h2>Hagamos algo bonito ♡</h2>
+      <p>¿Encontraste tu ramo favorito o tienes una idea especial?<br>Estamos listos para ayudarte con tu pedido.</p>
+      <a href="#" id="contactButton" class="btn" target="_blank" rel="noopener">HABLAR CON KIORA</a>
+    </section>
+  </main>
+
+  <footer>
+    <strong>KIORA</strong><p>FLORES Y DETALLES</p>
+    <p>Detalles que se convierten en recuerdos.</p>
+    <p>© 2026 Kiora. Todos los derechos reservados.</p>
+  </footer>
+
+  <a href="#" class="whatsapp-float" id="floatButton" target="_blank" rel="noopener">♡ WhatsApp</a>
+
+  <div class="lightbox" id="lightbox">
+    <button type="button" id="closeLightbox" aria-label="Cerrar">×</button>
+    <img src="" alt="Fotografía ampliada" id="lightboxImage">
   </div>
-</header>
 
-<main>
-  <section class="hero" id="inicio" aria-roledescription="carousel" aria-label="Ramos destacados">
-    <div id="slides"></div>
-    <button class="arr l" id="hPrev" type="button" aria-label="Anterior">‹</button>
-    <button class="arr r" id="hNext" type="button" aria-label="Siguiente">›</button>
-    <div class="dots" id="dots"></div>
-  </section>
+  <script>
+    // CONFIGURACIÓN: escribe tu WhatsApp con código de país, sin + ni espacios.
+    const WHATSAPP = "521XXXXXXXXXX";
 
-  <section class="intro">
-    <h2>Un detalle puede decirlo todo ♡</h2>
-    <p>Descubre nuestros ramos florales, bouquets y regalos personalizados. También creamos diseños especiales adaptados a tu gusto y presupuesto.</p>
-  </section>
+    // EDITA AQUÍ TUS PRODUCTOS. Usa precio: null para mostrar "Consultar precio".
+    const productos = [
+      { nombre:"Ramo de 12 rosas rojas", categoria:"Rosas", descripcion:"Un clásico para expresar amor y cariño.", precio:null, imagen:"imagenes/ramo-rosas.jpg" },
+      { nombre:"Bouquet romántico", categoria:"Bouquets", descripcion:"Flores cuidadosamente seleccionadas y envueltas.", precio:null, imagen:"imagenes/bouquet.jpg" },
+      { nombre:"Ramo de girasoles", categoria:"Girasoles", descripcion:"Un detalle lleno de luz, alegría y color.", precio:null, imagen:"imagenes/girasoles.jpg" },
+      { nombre:"Ramo con globo personalizado", categoria:"Detalles", descripcion:"Flores y un mensaje especial para sorprender.", precio:850, imagen:"imagenes/ramo-globo.jpg" }
+    ];
 
-  <section class="sec" id="catalogo">
-    <div class="head">
-      <h2>Nuestro catálogo</h2>
-      <p>Agrega lo que te guste a tu pedido y envíalo completo por WhatsApp. Los precios son de referencia; confirmamos disponibilidad contigo.</p>
-    </div>
-    <div class="tools">
-      <input type="search" id="q" placeholder="Busca: girasoles, rosas, chocolates…" aria-label="Buscar en el catálogo">
-      <select id="sort" aria-label="Ordenar">
-        <option value="">Orden destacado</option><option value="asc">Precio: menor a mayor</option><option value="desc">Precio: mayor a menor</option>
-      </select>
-    </div>
-    <div class="filters" id="filters"></div>
-    <p class="count" id="count" aria-live="polite"></p>
-    <div class="products" id="products"></div>
-  </section>
+    // EDITA AQUÍ TUS PROMOCIONES REALES.
+    const promociones = [
+      { icono:"🌹", titulo:"Bouquets especiales", descripcion:"Diseños florales para sorprender en cualquier ocasión." },
+      { icono:"🎈", titulo:"Regalos personalizados", descripcion:"Agrega globos, dedicatorias y detalles especiales." },
+      { icono:"💐", titulo:"Tu idea, nuestro diseño", descripcion:"Cotiza tu arreglo de acuerdo con tu presupuesto." }
+    ];
 
-  <section class="sec how" id="como">
-    <div class="head"><h2>Así de fácil es pedir</h2><p>Queremos que tu detalle llegue fresco, bonito y justo como lo imaginas.</p></div>
-    <ol class="steps">
-      <li><h3>Elige o cuéntanos</h3><p>Arma tu pedido desde el catálogo o envíanos una foto de referencia para cotizar tu idea.</p></li>
-      <li><h3>Confirma por WhatsApp</h3><p>Verificamos disponibilidad, fecha y precio final contigo.</p></li>
-      <li><h3>Aparta con 50%</h3><p>El anticipo del 50% reserva tu pedido. Aceptamos transferencia y efectivo.</p></li>
-      <li><h3>Recibe tu detalle</h3><p>Liquidas el resto antes de la entrega y listo.</p></li>
-    </ol>
-  </section>
+    const fotografias = [
+      "imagenes/ramo-rosas.jpg",
+      "imagenes/bouquet.jpg",
+      "imagenes/girasoles.jpg",
+      "imagenes/ramo-globo.jpg"
+    ];
 
-  <section class="sec" id="personalizado">
-    <div class="head"><h2>Personaliza tu regalo</h2><p>Realizamos ramos y regalos personalizados adaptados a tu presupuesto. Cuéntanos tu idea.</p></div>
-    <form class="form-wrap" id="orderForm">
-      <label for="nombre">Tu nombre</label>
-      <input id="nombre" type="text" placeholder="¿Cómo te llamas?" required autocomplete="name">
-      <div class="g2">
-        <div><label for="ocasion">¿Para qué ocasión?</label>
-          <select id="ocasion" required><option value="">Selecciona una ocasión</option><option>Cumpleaños</option><option>Aniversario</option><option>San Valentín</option><option>Graduación</option><option>Declaración de amor</option><option>Otro momento especial</option></select></div>
-        <div><label for="fecha">Fecha en que lo necesitas</label><input id="fecha" type="date" required></div>
-      </div>
-      <label for="presupuesto">Presupuesto aproximado (MXN)</label>
-      <input id="presupuesto" type="number" min="1" inputmode="numeric" placeholder="Ej. 800" required>
-      <label for="idea">Cuéntanos cómo imaginas tu regalo</label>
-      <textarea id="idea" placeholder="Colores, flores, globo, dedicatoria, etc." required></textarea>
-      <button class="btn" type="submit">Enviar mi idea por WhatsApp</button>
-    </form>
-  </section>
+    function whatsappLink(mensaje) {
+      return "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(mensaje);
+    }
 
-  <section class="sec" id="envios">
-    <div class="head"><h2>Entregas en Villahermosa</h2><p>Entregamos en toda la ciudad. El envío empieza en $50 y depende de la distancia desde nuestro taller.</p></div>
-    <div class="envios">
-      <div class="calc">
-        <h3>Calcula tu envío</h3>
-        <label for="zSel">¿A qué zona lo enviamos?</label><select id="zSel"></select>
-        <p class="res" id="zRes" aria-live="polite"></p>
-        <ul class="zlist" id="zList"></ul>
-        <p style="font-size:13px;color:var(--muted);margin-bottom:12px">El costo final se confirma según la ubicación exacta. Entrega urgente: +$20. En fechas de alta demanda (14 de febrero, 10 de mayo) las tarifas pueden ajustarse.</p>
-        <a class="btn" id="zWa" href="#" target="_blank" rel="noopener">Confirmar mi colonia por WhatsApp</a>
-      </div>
-      <div class="mapbox">
-        <iframe loading="lazy" title="Ubicación del taller de Kiora" src="https://www.google.com/maps?q=Cuitl%C3%A1huac+110,+Nueva+Villahermosa,+Villahermosa,+Tabasco&amp;output=embed"></iframe>
-        <p><strong>Taller Kiora</strong><br>Calle Cuitláhuac No. 110, Nueva Villahermosa, Villahermosa, Tabasco.<br>Si prefieres recoger tu pedido, avísanos antes por WhatsApp.</p>
-        <div class="social"><a href="https://www.facebook.com/FloresKiora1226" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/floreskiora" target="_blank" rel="noopener">Instagram</a></div>
-      </div>
-    </div>
-  </section>
+    function dinero(precio) {
+      if (precio === null || precio === undefined) return "Consultar precio";
+      return precio.toLocaleString("es-MX", {
+        style:"currency", currency:"MXN", maximumFractionDigits:0
+      });
+    }
 
-  <section class="sec how" id="preguntas">
-    <div class="head"><h2>Preguntas frecuentes</h2></div>
-    <div class="faq">
-      <details><summary>¿Con cuánta anticipación debo pedir?</summary><p>Trabajamos bajo agenda para cuidar la frescura de las flores. Te sugerimos pedir con 1 o 2 días de anticipación, o más tiempo en fechas especiales.</p></details>
-      <details><summary>¿Cómo se paga?</summary><p>Solicitamos el 50% de anticipo para apartar tu pedido y el resto se liquida antes de la entrega. Aceptamos transferencias y efectivo.</p></details>
-      <details><summary>¿Los precios del catálogo son finales?</summary><p>Son precios de referencia. Antes de pagar confirmamos contigo disponibilidad, detalles y el precio final.</p></details>
-      <details><summary>¿Hacen entregas y cuánto cuestan?</summary><p>Entregamos en toda Villahermosa. El costo depende de la zona, desde $50, y una entrega urgente cuesta $20 más. También entregamos en puntos acordados como Plaza de Armas o City Center. Por ahora solo entregamos dentro de Villahermosa. Elige tu colonia en la sección de envíos para ver el costo.</p></details>
-      <details><summary>¿Puedo pasar a recoger mi pedido?</summary><p>Sí, en calle Cuitláhuac No. 110, Nueva Villahermosa. Avísanos antes por WhatsApp para tenerlo listo.</p></details>
-      <details><summary>¿Puedo pedir un diseño que no está en el catálogo?</summary><p>Sí. Envíanos una foto de referencia o llena el formulario de personalizados con tu idea y presupuesto, y te cotizamos.</p></details>
-    </div>
-  </section>
+    function renderizarProductos(categoria = "Todos") {
+      const contenedor = document.getElementById("products");
+      const filtrados = categoria === "Todos"
+        ? productos : productos.filter(p => p.categoria === categoria);
 
-  <section class="contact" id="contacto">
-    <h2>Hagamos algo bonito ♡</h2>
-    <p>¿Encontraste tu ramo favorito o tienes una idea especial?<br>Escríbele a Kiora y con gusto te atenderemos.</p>
-    <a href="#" id="contactBtn" class="btn" target="_blank" rel="noopener">Hablar con Kiora</a>
-    <div class="social"><a href="https://www.facebook.com/FloresKiora1226" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/floreskiora" target="_blank" rel="noopener">Instagram</a></div>
-  </section>
-</main>
+      contenedor.innerHTML = filtrados.map(p => `
+        <article class="product">
+          <div class="product-image"><img src="${p.imagen}" alt="${p.nombre}" loading="lazy"></div>
+          <div class="product-info">
+            <span class="product-category">${p.categoria}</span>
+            <h3>${p.nombre}</h3>
+            <p class="product-description">${p.descripcion}</p>
+            <span class="price">${dinero(p.precio)}</span>
+            <a class="btn" target="_blank" rel="noopener"
+              href="${whatsappLink("Hola, Kiora. Me interesa: " + p.nombre + ". ¿Me pueden dar más información?")}">
+              PEDIR POR WHATSAPP
+            </a>
+          </div>
+        </article>`).join("");
+    }
 
-<footer>
-  <strong>KIORA</strong><p>Flores y detalles</p>
-  <p>Cada detalle cuenta una historia.</p>
-  <div class="social"><a href="https://www.facebook.com/FloresKiora1226" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/floreskiora" target="_blank" rel="noopener">Instagram</a></div>
-  <p>© 2026 Kiora. Todos los derechos reservados.</p>
-</footer>
+    function renderizarFiltros() {
+      const categorias = ["Todos", ...new Set(productos.map(p => p.categoria))];
+      document.getElementById("filters").innerHTML = categorias.map((categoria, index) => `
+        <button class="filter ${index === 0 ? "active" : ""}" data-category="${categoria}">
+          ${categoria}
+        </button>`).join("");
 
-<a href="#" class="wa" id="waFloat" target="_blank" rel="noopener">♡ WhatsApp</a>
+      document.querySelectorAll(".filter").forEach(boton => {
+        boton.addEventListener("click", () => {
+          document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+          boton.classList.add("active");
+          renderizarProductos(boton.dataset.category);
+        });
+      });
+    }
 
-<div class="veil" id="veil"></div>
-<aside class="dr" id="drawer" aria-label="Mi pedido">
-  <header><h2>Mi pedido</h2><button type="button" class="clear-btn" id="clearCart" aria-label="Vaciar pedido">Vaciar</button><button class="x" id="closeCart" type="button" aria-label="Cerrar pedido">×</button></header>
-  <ul class="items" id="items"></ul>
-  <div class="dfoot">
-    <div class="g2"><div><label for="cNombre">Tu nombre</label><input id="cNombre" autocomplete="name"></div><div><label for="cFecha">Para el día</label><input id="cFecha" type="date"></div></div>
-    <label for="cEntrega">¿Entrega o recoges?</label>
-    <select id="cEntrega"><option value="Entrega a domicilio">Entrega a domicilio o punto acordado</option><option>Paso a recoger</option></select>
-    <div id="zonaWrap"><label for="cZona">Tu zona</label><select id="cZona"></select><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="cUrg" style="width:auto"> Entrega urgente (+$20)</label></div>
-    <div class="tot" style="margin-top:16px"><span>Total de referencia</span><span id="total">$0</span></div>
-    <p class="note" id="totNote"></p>
-    <a class="btn" id="sendCart" href="#" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a>
-  </div>
-</aside>
+    function renderizarPromociones() {
+      document.getElementById("promoGrid").innerHTML = promociones.map(p => `
+        <article class="promo-card">
+          <div class="flower">${p.icono}</div><h3>${p.titulo}</h3><p>${p.descripcion}</p>
+        </article>`).join("");
+    }
 
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
-  <button class="x" id="lbClose" type="button" aria-label="Cerrar">×</button>
-  <button class="nav pv" id="lbPrev" type="button" aria-label="Anterior">‹</button>
-  <img src="" alt="" id="lbImg" onerror="fb(this)">
-  <p id="lbCap"></p>
-  <button class="nav nx" id="lbNext" type="button" aria-label="Siguiente">›</button>
-</div>
-<div class="toast" id="toast" role="status"></div>
+    function renderizarGaleria() {
+      document.getElementById("gallery").innerHTML = fotografias.map((foto, index) => `
+        <button class="gallery-item" type="button" data-image="${foto}" aria-label="Ampliar fotografía ${index + 1}">
+          <img src="${foto}" alt="Diseño floral Kiora ${index + 1}" loading="lazy">
+        </button>`).join("");
 
-<script>
-// WhatsApp de atención. Cámbialo aquí si el número ya no es el correcto.
-const WHATSAPP="529601011637";
-const R="Ramos florales",B="Bouquets",G="Regalos y detalles";
-const P=(nombre,categoria,descripcion,precio,imagen)=>({nombre,categoria,descripcion,precio,imagen:"imagenes/"+imagen});
-// Precios y fotos: edítalos aquí. precio:null muestra "Consultar precio".
-const productos=[
-P("Atardecer Rosado",R,"6 rosas rosadas + 3 gerberas naranjas con centro amarillo, abundante statice morado y nube.",500,"atardecer-rosado.jpg"),
-P("Ramo Sutileza y Pureza",R,"5 rosas en tonos blanco y rosa suave, acompañadas de abundante follaje sólido de tono verde fresco.",350,"sutileza-y-pureza.png"),
-P("Ramo Luz de Noche",R,"2 girasoles + gypsophila + solidago.",410,"ramo-luz-de-noche.png"),
-P("Ramo Amor en Lila",R,"12 crisantemos pompom + gypsophila.",500,"amor-en-lila.png"),
-P("Ramo Un Sol Para Ti",R,"1 girasol + nubes + envoltura del color de tu preferencia.",380,"un-sol-para-ti.png"),
-P("Ramo Eres Mi Sol",R,"2 girasoles + claveles rosados + nubes + follaje verde.",450,"eres-mi-sol.jpg"),
-P("Ramo Amor Dulce",R,"Una rosa roja + 6 Ferrero + nubes.",400,"amor-dulce.png"),
-P("Ramo Cinco Razones Para Amarte",R,"5 rosas rojas + nubes.",360,"cinco-razones-para-amarte.png"),
-P("Ramo Atardecer de Amor",R,"1 girasol + 2 rosas rojas + nubes + chocolates Ferrero Rocher.",500,"atardecer-de-amor.png"),
-P("Ramo Te Quiero Soleado",R,"6 girasoles + 6 rosas + solidago.",900,"te-quiero-soleado.png"),
-P("Ramo Dulce Amanecer",R,"6 rosas rosadas + crisantemos + follaje verde (solidago).",480,"dulce-amanecer.jpg"),
-P("Ramo Dulce Ternura",R,"1 girasol grande + 4 rosas fucsias + astromelias + follaje verde (solidago).",500,"dulce-ternura.jpg"),
-P("Ramo Amanecer Naranja",R,"1 gerbera naranja + 3 rosas blancas + gypsophila + solidago + statice morado.",410,"amanecer-naranja.png"),
-P("Ramo Tres Suspiros",R,"3 rosas blancas + nubes.",360,"tres-suspiros.png"),
-P("Ramo Coqueta",R,"1 gerbera + gypsophila + solidago.",350,"coqueta.png"),
-P("Ramo Princesa",R,"5 rosas rosadas + gypsophila.",440,"princesa.JPG"),
-P("Bouquet Pasión Eterna",B,"20 rosas rojas naturales premium + nube natural (gypsophila) + envoltura con bordes blancos + moño de listón + tarjeta personalizada.",800,"bouquet-pasion-eterna.PNG"),
-P("Bouquet Pureza",B,"7 rosas blancas naturales + nube natural (gypsophila) + follaje verde + envoltura color crema + listón de satén + tarjeta personalizada.",500,"bouquet-pureza.png"),
-P("Bouquet Dulce Mix",B,"Mix de chocolates (Kinder Bueno, Twix, Kit Kat, Snickers, etc.) + envoltura premium + listón decorativo + tarjeta personalizada con texto a tu elección.",800,"bouquet-dulce-mix.png"),
-P("Bouquet Dulce Encanto",B,"Rosas naturales + nubes + eucalipto + mix de chocolates Kinder + envoltura premium + listón de satén + tarjeta personalizada.",1200,"bouquet-dulce-encanto.png"),
-P("Huacal de Amor",G,"Cajita de madera + 8 rosas rojas naturales + nubes + letrero personalizado a tu elección + globo de corazón.",650,"huacal-de-amor.png"),
-P("Bouquet de Globos Personalizado con Helio",G,"2 globos estrella + globo burbuja con globo dorado por dentro y letras personalizadas + globo plateado + globo dorado + 8 globos rojos.",1600,"bouquet-globos-helio.png"),
-P("Bouquet Dulce Sorpresa",B,"Bouquet de dulces. Personaliza tu detalle y consulta disponibilidad.",null,"bouquet-dulce-sorpresa.PNG"),
-P("Bouquet Esencia",B,"Un detalle floral especial. Consulta opciones y disponibilidad.",null,"bouquet-esencia.PNG"),
-P("Globo Personalizable",G,"Globo personalizado con el mensaje de tu elección. Consulta medidas y disponibilidad.",null,"Globo-personalizable.PNG"),
-P("Ramo de 30 Gerberas",R,"Arreglo de 30 gerberas. Consulta colores, precio y disponibilidad.",null,"treinta-gerberas.jpg")
-];
+      document.querySelectorAll(".gallery-item").forEach(item => {
+        item.addEventListener("click", () => {
+          document.getElementById("lightboxImage").src = item.dataset.image;
+          document.getElementById("lightbox").classList.add("open");
+        });
+      });
+    }
 
-// Tarifario de envío (MXN). Edita precios y colonias aquí. d:true muestra "desde".
-const ENVIO_BASE=50,URGENTE=20;
-const zonas=[
-{z:"Zona 1 · Local",c:50,l:["Nueva Villahermosa","Loma Linda","Linda Vista","El Águila","Florida","Jesús García","López Mateos"]},
-{z:"Zona 2 · Centro",c:50,l:["Centro Histórico","Zona Luz","Plaza de Armas","Parque Juárez","Reforma","Mayito","Guayabal","Atasta"]},
-{z:"Zona 3 · Tamulté",c:60,l:["Tamulté de las Barrancas"]},
-{z:"Zona 4 · Intermedia",c:65,l:["Primero de Mayo","FOVISSSTE","18 de Marzo","Punta Brava"]},
-{z:"Zona 5 · Comercial",c:75,l:["Tabasco 2000","Galerías","City Center","La Choca","Carrizal"]},
-{z:"Zona 6 · Oriente",c:85,l:["Gaviotas Norte","Gaviotas Sur","La Manga","Casa Blanca","Tierra Colorada"]},
-{z:"Zona 7 · Periférica",c:110,d:true,l:["Indeco","Lagunas","Ciudad Industrial","Miguel Hidalgo","Sabina"]}
-];
-const puntos=[["Plaza de Armas",50],["Parque Juárez",50],["Parque Tomás Garrido",50],["Parque La Pólvora",60],["Plaza Crystal",65],["Parque La Choca",75],["City Center",75],["Plaza Las Américas",75]];
-const D=[];
-zonas.forEach(g=>g.l.forEach(n=>D.push({n,c:g.c,g:g.z,d:g.d})));
-puntos.forEach(([n,c])=>D.push({n:"Punto: "+n,c,g:"Puntos de entrega"}));
-D.push({n:"Otra colonia de Villahermosa",c:null,g:"Otra zona"});
+    document.getElementById("orderForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value.trim();
+      const ocasion = document.getElementById("ocasion").value;
+      const presupuesto = document.getElementById("presupuesto").value;
+      const idea = document.getElementById("idea").value.trim();
 
-// Si una foto no carga, prueba otras extensiones (png, jpg, jpeg, mayúsculas) antes de ocultarla.
-function fb(i){const E=["png","jpg","jpeg","PNG","JPG","JPEG","webp"],n=+(i.dataset.n||0);if(n>=E.length){i.style.visibility="hidden";return}i.dataset.n=n+1;i.src=i.src.replace(/\.[A-Za-z]+(\?.*)?$/,"."+E[n])}
-const $=s=>document.querySelector(s);
-const wa=m=>"https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(m);
-const mxn=n=>n.toLocaleString("es-MX",{style:"currency",currency:"MXN",maximumFractionDigits:0});
-const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
-const esc=s=>String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-let cat="Todos",vista=[],li=0,cart={};
-try{cart=JSON.parse(localStorage.getItem("kiora-pedido")||"{}")}catch(e){}
-const guardar=()=>{try{localStorage.setItem("kiora-pedido",JSON.stringify(cart))}catch(e){}};
-const byName=n=>productos.find(p=>p.nombre===n);
-function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),1800)}
+      const mensaje = "¡Hola, Kiora Flores y Detalles! 🌷\n\n" +
+        "Quiero realizar un pedido personalizado.\n\n" +
+        "Nombre: " + nombre + "\n" +
+        "Ocasión: " + ocasion + "\n" +
+        "Presupuesto: $" + presupuesto + " MXN\n" +
+        "Mi idea: " + idea;
 
-function filtros(){
-  const cs=["Todos",...new Set(productos.map(p=>p.categoria))];
-  $("#filters").innerHTML=cs.map(c=>`<button type="button" class="filter${c===cat?" on":""}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
-}
-function catalogo(){
-  const q=norm($("#q").value.trim()),o=$("#sort").value;
-  vista=productos.filter(p=>(cat==="Todos"||p.categoria===cat)&&(!q||norm(p.nombre+" "+p.descripcion).includes(q)));
-  if(o)vista.sort((a,b)=>((a.precio??1e9)-(b.precio??1e9))*(o==="asc"?1:-1));
-  $("#count").textContent=vista.length+(vista.length===1?" detalle":" detalles");
-  $("#products").innerHTML=vista.length?vista.map((p,i)=>`
-  <article class="product">
-    <button type="button" class="pimg" data-z="${i}" aria-label="Ampliar foto de ${esc(p.nombre)}">
-      <img src="${esc(p.imagen)}" alt="${esc(p.nombre)}" loading="lazy" onerror="fb(this)">
-      ${p.precio==null?"<i>A cotizar</i>":""}
-    </button>
-    <div class="pinfo">
-      <span class="cat">${esc(p.categoria)}</span><h3>${esc(p.nombre)}</h3>
-      <p class="pdesc">${esc(p.descripcion)}</p>
-      <span class="price">${p.precio==null?"Consultar precio":mxn(p.precio)}</span>
-      <div class="row">
-        <button type="button" class="btn" data-add="${esc(p.nombre)}">Agregar al pedido</button>
-        <a class="btn line" target="_blank" rel="noopener" aria-label="Preguntar por ${esc(p.nombre)}" href="${wa("Hola, Kiora. Me interesa: "+p.nombre+". ¿Me compartes precio y disponibilidad?")}">Preguntar</a>
-      </div>
-    </div>
-  </article>`).join(""):`<p class="empty">No encontramos ese detalle. Prueba con otra palabra o <a href="#personalizado" style="color:var(--rose);text-decoration:underline">cuéntanos tu idea</a>.</p>`;
-}
+      window.open(whatsappLink(mensaje), "_blank");
+    });
 
-function pedido(){
-  const ks=Object.keys(cart).filter(k=>byName(k)&&cart[k]>0);
-  let total=0,nq=0,n=0;
-  $("#items").innerHTML=ks.length?ks.map(k=>{const p=byName(k),c=cart[k];n+=c;if(p.precio==null)nq++;else total+=p.precio*c;
-    return `<li><img src="${esc(p.imagen)}" alt="" onerror="fb(this)"><div class="n">${esc(p.nombre)}<small>${p.precio==null?"A cotizar":mxn(p.precio*c)}</small></div>
-    <div class="qty"><button type="button" data-m="${esc(k)}" aria-label="Quitar uno">−</button><span>${c}</span><button type="button" data-p="${esc(k)}" aria-label="Agregar uno">+</button></div></li>`}).join(""):`<li class="note" style="display:block;padding:30px 0;text-align:center">Aún no agregas nada. Elige algo del catálogo ♡</li>`;
-  const dom=$("#cEntrega").value==="Entrega a domicilio",z=D[$("#cZona").value]||D[0];
-  $("#zonaWrap").style.display=dom?"block":"none";
-  const urg=$("#cUrg").checked,fee=dom&&ks.length&&z.c!=null?z.c+(urg?URGENTE:0):0;total+=fee;const ev=fee?"Incluye envío de "+mxn(fee)+". ":dom&&ks.length&&z.c==null?"Envío por confirmar (desde "+mxn(ENVIO_BASE)+"). ":"";
-  $("#cnt").textContent=n;$("#total").textContent=mxn(total);
-  $("#totNote").textContent=ev+(nq?nq+(nq>1?" artículos":" artículo")+" por cotizar no está incluido. El precio final se confirma por WhatsApp.":"El precio final se confirma por WhatsApp.");
-  const s=$("#sendCart");s.style.opacity=ks.length?1:.5;s.style.pointerEvents=ks.length?"auto":"none";
-  const cl=$("#clearCart");if(cl)cl.style.display=ks.length?"inline-block":"none";
-  const nombre=$("#cNombre").value.trim(),fecha=$("#cFecha").value;
-  const lineas=ks.map(k=>{const p=byName(k);return "• "+cart[k]+" × "+p.nombre+(p.precio==null?" (por cotizar)":" — "+mxn(p.precio*cart[k]))}).join("
-");
-  s.href=wa("¡Hola, Kiora Flores y Detalles! 🌷
+    document.getElementById("closeLightbox").addEventListener("click", () => {
+      document.getElementById("lightbox").classList.remove("open");
+    });
 
-Quiero hacer este pedido:
-"+lineas+"
+    document.getElementById("lightbox").addEventListener("click", e => {
+      if (e.target.id === "lightbox") e.currentTarget.classList.remove("open");
+    });
 
-Total de referencia: "+mxn(total)+(nq?" + "+nq+" por cotizar":"")+(nombre?"
-Nombre: "+nombre:"")+(fecha?"
-Para el día: "+fecha:"")+"
-"+$("#cEntrega").value+(dom?" — "+z.n+(z.c==null?" (envío por confirmar)":" (envío "+mxn(z.c+(urg?URGENTE:0))+(urg?", urgente":"")+")"):"")+"
+    document.getElementById("contactButton").href =
+      whatsappLink("Hola, Kiora. Me gustaría conocer su catálogo.");
+    document.getElementById("floatButton").href =
+      whatsappLink("Hola, Kiora. Quiero información sobre sus flores.");
 
-¿Me confirmas disponibilidad?");
-  guardar();
-}
-const cambiar=(k,d)=>{cart[k]=Math.max(0,(cart[k]||0)+d);if(!cart[k])delete cart[k];pedido()};
-function drawer(on){$("#drawer").classList.toggle("on",on);$("#veil").classList.toggle("on",on);if(on)$("#closeCart").focus()}
-
-function lb(i){
-  li=(i+vista.length)%vista.length;const p=vista[li];
-  $("#lbImg").dataset.n=0;$("#lbImg").style.visibility="visible";$("#lbImg").src=p.imagen;$("#lbImg").alt=p.nombre;
-  $("#lbCap").textContent=p.nombre+" · "+(p.precio==null?"Consultar precio":mxn(p.precio));
-  $("#lb").classList.add("on");
-}
-
-$("#filters").addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(b){cat=b.dataset.c;filtros();catalogo()}});
-$("#q").addEventListener("input",catalogo);$("#sort").addEventListener("change",catalogo);
-$("#products").addEventListener("click",e=>{
-  const a=e.target.closest("[data-add]"),z=e.target.closest("[data-z]");
-  if(a){cambiar(a.dataset.add,1);toast("Agregado a tu pedido ♡")}
-  if(z)lb(+z.dataset.z);
-});
-$("#items").addEventListener("click",e=>{const m=e.target.closest("[data-m]"),p=e.target.closest("[data-p]");if(m)cambiar(m.dataset.m,-1);if(p)cambiar(p.dataset.p,1)});
-$("#clearCart").addEventListener("click",()=>{cart={};pedido();toast("Pedido vaciado")});
-["#cNombre","#cFecha","#cEntrega","#cZona","#cUrg"].forEach(s=>$(s).addEventListener("input",pedido));
-$("#openCart").addEventListener("click",()=>drawer(true));
-$("#closeCart").addEventListener("click",()=>drawer(false));
-$("#veil").addEventListener("click",()=>drawer(false));
-$("#lbClose").addEventListener("click",()=>$("#lb").classList.remove("on"));
-$("#lbPrev").addEventListener("click",()=>lb(li-1));$("#lbNext").addEventListener("click",()=>lb(li+1));
-$("#lb").addEventListener("click",e=>{if(e.target.id==="lb")e.currentTarget.classList.remove("on")});
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape"){$("#lb").classList.remove("on");drawer(false)}
-  if($("#lb").classList.contains("on")){if(e.key==="ArrowLeft")lb(li-1);if(e.key==="ArrowRight")lb(li+1)}
-});
-$("#menu").addEventListener("click",e=>{const o=$("#nav").classList.toggle("on");e.currentTarget.setAttribute("aria-expanded",o)});
-$("#nav").addEventListener("click",()=>$("#nav").classList.remove("on"));
-
-$("#orderForm").addEventListener("submit",e=>{
-  e.preventDefault();
-  window.open(wa("¡Hola, Kiora Flores y Detalles! 🌷
-
-Quiero un pedido personalizado.
-Nombre: "+$("#nombre").value.trim()+"
-Ocasión: "+$("#ocasion").value+"
-Fecha: "+$("#fecha").value+"
-Presupuesto: $"+$("#presupuesto").value+" MXN
-Mi idea: "+$("#idea").value.trim()),"_blank");
-});
-const manana=new Date(Date.now()+864e5).toISOString().slice(0,10);
-["#fecha","#cFecha"].forEach(s=>$(s).min=manana);
-$("#contactBtn").href=wa("Hola, Kiora. Me gustaría conocer su catálogo.");
-$("#waFloat").href=wa("Hola, Kiora. Quiero información sobre sus flores.");
-// Portada: cada slide muestra un producto del catálogo (por nombre). Edita textos aquí.
-const portada=[
-{light:true,t:"Regala flores,<br>regala emociones.",p:"Ramos, bouquets y regalos personalizados para esa persona especial. Cada detalle cuenta una historia."},
-{n:"Ramo Te Quiero Soleado",t:"Para quien<br>es tu sol.",p:"Seis girasoles y seis rosas con solidago, para alegrar su día."},
-{n:"Bouquet Pasión Eterna",t:"Veinte rosas para<br>decirlo todo.",p:"Rosas rojas naturales premium con tarjeta personalizada."},
-{n:"Bouquet Dulce Encanto",t:"Flores y chocolates,<br>en un solo regalo.",p:"Rosas naturales, eucalipto y chocolates Kinder en un mismo bouquet."},
-{n:"Huacal de Amor",t:"Un huacal<br>lleno de amor.",p:"8 rosas rojas en caja de madera, con letrero personalizado y globo de corazón."},
-{n:"Ramo Dulce Amanecer",t:"Suave como<br>un amanecer.",p:"6 rosas rosadas con crisantemos y follaje verde."}
-].filter(x=>!x.n||byName(x.n));
-let hi=0,ht;
-const col=`<div class="collage" aria-hidden="true">${["Ramo Coqueta","Ramo Te Quiero Soleado","Ramo Princesa"].filter(byName).map(n=>`<img src="${esc(byName(n).imagen)}" alt="" onerror="fb(this)">`).join("")}</div>`;
-const arco=(n,c)=>byName(n)?`<img class="${c}" src="${esc(byName(n).imagen)}" alt="${esc(byName(n).nombre)}" onerror="fb(this)">`:"";
-const chip=(n,c)=>byName(n)?`<span class="chip ${c}"><b>${esc(n)}</b>${mxn(byName(n).precio)}</span>`:"";
-$("#slides").innerHTML=portada.map((x,i)=>{
-  if(x.light)return `<div class="slide light on" aria-hidden="false"><span class="blob"></span><div class="hero-in"><h1>${x.t}</h1><p>${x.p}</p>
-  <div class="btns"><a href="#catalogo" class="btn">Ver el catálogo</a><a href="#personalizado" class="btn line">Crear uno a mi gusto</a></div>
-  <ul class="facts"><li><b>Entrega en Villahermosa</b>desde $50</li><li><b>Aparta con 50%</b>el resto al entregar</li><li><b>Diseños a tu gusto</b>según tu presupuesto</li></ul></div>
-  <div class="arches" aria-hidden="true">${arco("Ramo Coqueta","a1")}${arco("Ramo Princesa","a2")}${chip("Ramo Coqueta","c1")}${chip("Ramo Princesa","c2")}</div></div>`;
-  const pr=x.n?byName(x.n):null,img=pr?pr.imagen:x.img;
-  const tit=i?`<h2>${x.t}</h2>`:`<h1>${x.t}</h1>`;
-  return `<div class="slide${i?"":" on"}${pr?" blur":""}" aria-hidden="${i?"true":"false"}">${pr?`<div class="bg" style="--img:url('${esc(img)}')"></div>`:`<img class="bgi" src="${esc(img)}" alt="" onerror="fb(this)">`}
-  <div class="hero-in">${pr?`<span class="tag">${esc(pr.nombre)} · ${pr.precio==null?"Consultar precio":mxn(pr.precio)}</span>`:""}${tit}<p>${x.p}</p>
-  <div class="btns">${pr?`<button type="button" class="btn" data-ver="${esc(pr.nombre)}">Ver este detalle</button><button type="button" class="btn ghost" data-hadd="${esc(pr.nombre)}">Agregar al pedido</button>`:`<a href="#catalogo" class="btn">Ver el catálogo</a><a href="#personalizado" class="btn ghost">Crear uno a mi gusto</a>`}</div>
-  ${pr?"":`<ul class="chips"><li>Flores frescas</li><li>Pedidos con agenda</li><li>Regalos personalizados</li></ul>`}</div>
-  ${pr?`<img class="photo" src="${esc(img)}" alt="${esc(pr.nombre)}" onerror="fb(this)">`:col}</div>`}).join("");
-$("#dots").innerHTML=portada.map((x,i)=>`<button type="button" class="${i?"":"on"}" data-h="${i}" aria-label="Ir a la imagen ${i+1}"></button>`).join("");
-function ir(i){
-  hi=(i+portada.length)%portada.length;
-  $("#inicio").classList.toggle("lt",!!portada[hi].light);
-  document.querySelectorAll(".slide").forEach((e,k)=>{e.classList.toggle("on",k===hi);e.setAttribute("aria-hidden",k!==hi)});
-  document.querySelectorAll("#dots button").forEach((e,k)=>e.classList.toggle("on",k===hi));
-  auto(true);
-}
-function auto(on){clearInterval(ht);if(on)ht=setInterval(()=>ir(hi+1),5500)}
-const hero=$("#inicio");
-hero.addEventListener("click",e=>{
-  const d=e.target.closest("[data-h]"),v=e.target.closest("[data-ver]"),a=e.target.closest("[data-hadd]");
-  if(d)ir(+d.dataset.h);
-  if(a){cambiar(a.dataset.hadd,1);toast("Agregado a tu pedido ♡")}
-  if(v){cat="Todos";$("#q").value=v.dataset.ver;filtros();catalogo();$("#catalogo").scrollIntoView({behavior:"smooth"})}
-});
-$("#hPrev").addEventListener("click",()=>ir(hi-1));$("#hNext").addEventListener("click",()=>ir(hi+1));
-let tx=0;hero.addEventListener("touchstart",e=>{tx=e.touches[0].clientX},{passive:true});
-hero.addEventListener("touchend",e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)ir(hi+(d<0?1:-1))});
-$("#inicio").classList.toggle("lt",!!portada[0].light);auto(true);
-
-const pz=x=>x.c==null?"te confirmamos":(x.d?"desde ":"")+mxn(x.c);
-const opZ=[...new Set(D.map(x=>x.g))].map(g=>`<optgroup label="${esc(g)}">`+D.map((x,i)=>x.g===g?`<option value="${i}">${esc(x.n)} — ${pz(x)}</option>`:"").join("")+"</optgroup>").join("");
-$("#cZona").innerHTML=opZ;$("#zSel").innerHTML=opZ;
-$("#zList").innerHTML=zonas.map(g=>`<li><span><b>${esc(g.z)}</b><br><small>${esc(g.l.join(", "))}</small></span><b>${g.d?"desde ":""}${mxn(g.c)}</b></li>`).join("")+`<li><span><b>Puntos de entrega</b><br><small>${puntos.map(p=>esc(p[0])+" "+mxn(p[1])).join(" · ")}</small></span></li>`;
-function zona(){const z=D[$("#zSel").value];
-  $("#zRes").innerHTML=z.c==null?"Te confirmamos el costo por WhatsApp (desde "+mxn(ENVIO_BASE)+").":"Envío a <b>"+esc(z.n)+"</b>: <b>"+pz(z)+"</b>";
-  $("#zWa").href=wa("Hola, Kiora. Quiero una entrega en: "+z.n+". ¿Me confirmas el costo de envío?")}
-$("#zSel").addEventListener("change",zona);zona();
-filtros();catalogo();pedido();
-</script>
+    renderizarFiltros();
+    renderizarProductos();
+    renderizarPromociones();
+    renderizarGaleria();
+  </script>
 </body>
 </html>
