@@ -309,7 +309,7 @@ nav a{padding:12px 0;border-top:1px solid var(--line);width:100%}
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
   <button class="x" id="lbClose" type="button" aria-label="Cerrar">×</button>
   <button class="nav pv" id="lbPrev" type="button" aria-label="Anterior">‹</button>
-  <img src="" alt="" id="lbImg">
+  <img src="" alt="" id="lbImg" onerror="fb(this)">
   <p id="lbCap"></p>
   <button class="nav nx" id="lbNext" type="button" aria-label="Siguiente">›</button>
 </div>
@@ -330,12 +330,12 @@ P("Ramo Un Sol Para Ti",R,"1 girasol + nubes + envoltura del color de tu prefere
 P("Ramo Eres Mi Sol",R,"2 girasoles + claveles rosados + nubes + follaje verde.",450,"eres-mi-sol.jpg"),
 P("Ramo Amor Dulce",R,"Una rosa roja + 6 Ferrero + nubes.",400,"amor-dulce.png"),
 P("Ramo Cinco Razones Para Amarte",R,"5 rosas rojas + nubes.",360,"cinco-razones-para-amarte.png"),
-P("Ramo Atardecer de Amor",R,"1 girasol + 2 rosas rojas + nubes + chocolates Ferrero Rocher.",500,"atardecer-de-amor.jpg"),
-P("Ramo Te Quiero Soleado",R,"6 girasoles + 6 rosas + solidago.",900,"te-quiero-soleado.jpg"),
+P("Ramo Atardecer de Amor",R,"1 girasol + 2 rosas rojas + nubes + chocolates Ferrero Rocher.",500,"atardecer-de-amor.png"),
+P("Ramo Te Quiero Soleado",R,"6 girasoles + 6 rosas + solidago.",900,"te-quiero-soleado.png"),
 P("Ramo Dulce Amanecer",R,"6 rosas rosadas + crisantemos + follaje verde (solidago).",480,"dulce-amanecer.jpg"),
 P("Ramo Dulce Ternura",R,"1 girasol grande + 4 rosas fucsias + astromelias + follaje verde (solidago).",500,"dulce-ternura.jpg"),
-P("Ramo Amanecer Naranja",R,"1 gerbera naranja + 3 rosas blancas + gypsophila + solidago + statice morado.",410,"amanecer-naranja.jpg"),
-P("Ramo Tres Suspiros",R,"3 rosas blancas + nubes.",360,"tres-suspiros.jpg"),
+P("Ramo Amanecer Naranja",R,"1 gerbera naranja + 3 rosas blancas + gypsophila + solidago + statice morado.",410,"amanecer-naranja.png"),
+P("Ramo Tres Suspiros",R,"3 rosas blancas + nubes.",360,"tres-suspiros.png"),
 P("Ramo Coqueta",R,"1 gerbera + gypsophila + solidago.",350,"coqueta.png"),
 P("Ramo Princesa",R,"5 rosas rosadas + gypsophila.",440,"princesa.JPG"),
 P("Bouquet Pasión Eterna",B,"20 rosas rojas naturales premium + nube natural (gypsophila) + envoltura con bordes blancos + moño de listón + tarjeta personalizada.",800,"bouquet-pasion-eterna.PNG"),
@@ -350,6 +350,8 @@ P("Globo Personalizable",G,"Globo personalizado con el mensaje de tu elección. 
 P("Ramo de 30 Gerberas",R,"Arreglo de 30 gerberas. Consulta colores, precio y disponibilidad.",null,"treinta-gerberas.jpg")
 ];
 
+// Si una foto no carga, prueba otras extensiones (png, jpg, jpeg, mayúsculas) antes de ocultarla.
+function fb(i){const E=["png","jpg","jpeg","PNG","JPG","JPEG","webp"],n=+(i.dataset.n||0);if(n>=E.length){i.style.visibility="hidden";return}i.dataset.n=n+1;i.src=i.src.replace(/\.[A-Za-z]+(\?.*)?$/,"."+E[n])}
 const $=s=>document.querySelector(s);
 const wa=m=>"https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(m);
 const mxn=n=>n.toLocaleString("es-MX",{style:"currency",currency:"MXN",maximumFractionDigits:0});
@@ -372,7 +374,7 @@ function catalogo(){
   $("#products").innerHTML=vista.length?vista.map((p,i)=>`
   <article class="product">
     <button type="button" class="pimg" data-z="${i}" aria-label="Ampliar foto de ${p.nombre}">
-      <img src="${p.imagen}" alt="${p.nombre}" loading="lazy" onerror="this.remove()">
+      <img src="${p.imagen}" alt="${p.nombre}" loading="lazy" onerror="fb(this)">
       ${p.precio==null?"<i>A cotizar</i>":""}
     </button>
     <div class="pinfo">
@@ -391,7 +393,7 @@ function pedido(){
   const ks=Object.keys(cart).filter(k=>byName(k)&&cart[k]>0);
   let total=0,nq=0,n=0;
   $("#items").innerHTML=ks.length?ks.map(k=>{const p=byName(k),c=cart[k];n+=c;if(p.precio==null)nq++;else total+=p.precio*c;
-    return `<li><img src="${p.imagen}" alt="" onerror="this.style.visibility='hidden'"><div class="n">${p.nombre}<small>${p.precio==null?"A cotizar":mxn(p.precio*c)}</small></div>
+    return `<li><img src="${p.imagen}" alt="" onerror="fb(this)"><div class="n">${p.nombre}<small>${p.precio==null?"A cotizar":mxn(p.precio*c)}</small></div>
     <div class="qty"><button type="button" data-m="${k}" aria-label="Quitar uno">−</button><span>${c}</span><button type="button" data-p="${k}" aria-label="Agregar uno">+</button></div></li>`}).join(""):`<li class="note" style="display:block;padding:30px 0;text-align:center">Aún no agregas nada. Elige algo del catálogo ♡</li>`;
   const dom=$("#cEntrega").value==="Entrega a domicilio",z=D[$("#cZona").value]||D[0];
   $("#zonaWrap").style.display=dom?"block":"none";
@@ -409,7 +411,7 @@ function drawer(on){$("#drawer").classList.toggle("on",on);$("#veil").classList.
 
 function lb(i){
   li=(i+vista.length)%vista.length;const p=vista[li];
-  $("#lbImg").src=p.imagen;$("#lbImg").alt=p.nombre;
+  $("#lbImg").dataset.n=0;$("#lbImg").style.visibility="visible";$("#lbImg").src=p.imagen;$("#lbImg").alt=p.nombre;
   $("#lbCap").textContent=p.nombre+" · "+(p.precio==null?"Consultar precio":mxn(p.precio));
   $("#lb").classList.add("on");
 }
@@ -461,7 +463,7 @@ $("#slides").innerHTML=portada.map((x,i)=>{
   <div class="hero-in">${pr?`<span class="tag">${pr.nombre} · ${pr.precio==null?"Consultar precio":mxn(pr.precio)}</span>`:""}${tit}<p>${x.p}</p>
   <div class="btns">${pr?`<button type="button" class="btn" data-ver="${pr.nombre}">Ver este detalle</button><button type="button" class="btn ghost" data-hadd="${pr.nombre}">Agregar al pedido</button>`:`<a href="#catalogo" class="btn">Ver el catálogo</a><a href="#personalizado" class="btn ghost">Crear uno a mi gusto</a>`}</div>
   ${pr?"":`<ul class="chips"><li>Flores frescas</li><li>Pedidos con agenda</li><li>Regalos personalizados</li></ul>`}</div>
-  ${pr?`<img class="photo" src="${img}" alt="${pr.nombre}" onerror="this.style.visibility='hidden'">`:""}</div>`}).join("");
+  ${pr?`<img class="photo" src="${img}" alt="${pr.nombre}" onerror="fb(this)">`:""}</div>`}).join("");
 $("#dots").innerHTML=portada.map((x,i)=>`<button type="button" class="${i?"":"on"}" data-h="${i}" aria-label="Ir a la imagen ${i+1}"></button>`).join("");
 function ir(i){
   hi=(i+portada.length)%portada.length;
